@@ -27,14 +27,19 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#服务端
-function server(){
-    wget -O neutrino-proxy-server.sh ${repo_url}program/neutrino-proxy/neutrino-proxy-server.sh && chmod +x neutrino-proxy-server.sh && ./neutrino-proxy-server.sh
+#
+function nginx_docker(){
+    wget -O nginx_docker.sh ${repo_url}program/nginx/nginx_docker.sh && chmod +x nginx_docker.sh && ./nginx_docker.sh
 }
 
-#客户端
-function client(){
-    wget -O neutrino-proxy-client.sh ${repo_url}program/neutrino-proxy/neutrino-proxy-client.sh && chmod +x neutrino-proxy-client.sh && ./neutrino-proxy-client.sh
+#
+function nginxproxymanager(){
+
+}
+
+#
+function safeline(){
+
 }
 
 #返回主脚本
@@ -52,17 +57,37 @@ function start_menu(){
     yellow " =================================================="
     green " 1. " 
     green " 2. "
+    green " 3. "
+    green " 4. " 
+    green " 5. "
+    green " 6. "
+    green " 7. "
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           server
+           #
 	    ;;
         2 )
-	       client
-        ;;   
+	       #
+        ;;
+	    3 )
+           #
+	    ;;
+        4 )
+	       #
+        ;;
+	    5 )
+           #
+	    ;;
+        6 )
+	       #
+        ;;
+	    7 )
+           #
+	    ;;   
 
         0 )
            back

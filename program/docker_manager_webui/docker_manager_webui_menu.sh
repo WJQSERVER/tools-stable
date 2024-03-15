@@ -27,14 +27,19 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#服务端
-function server(){
-    wget -O neutrino-proxy-server.sh ${repo_url}program/neutrino-proxy/neutrino-proxy-server.sh && chmod +x neutrino-proxy-server.sh && ./neutrino-proxy-server.sh
+#Portainer
+function portainer(){
+    wget -O portainer.sh ${repo_url}program/docker_manager_webui/portainer.sh && chmod +x portainer.sh && ./portainer.sh
 }
 
-#客户端
-function client(){
-    wget -O neutrino-proxy-client.sh ${repo_url}program/neutrino-proxy/neutrino-proxy-client.sh && chmod +x neutrino-proxy-client.sh && ./neutrino-proxy-client.sh
+#Dockge
+function dockge(){
+    wget -O dockge.sh ${repo_url}program/docker_manager_webui/dockge.sh && chmod +x dockge.sh && ./dockge.sh
+}
+
+#Docker-UI
+function docker-ui(){
+    wget -O docker-ui.sh ${repo_url}program/docker_manager_webui/docker-ui.sh && chmod +x docker-ui.sh && ./docker-ui.sh
 }
 
 #返回主脚本
@@ -50,20 +55,23 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-dev "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
+    green " 1. Portainer" 
+    green " 2. Dockge"
+    green " 3. Docker-UI"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           server
+           portainer
 	    ;;
         2 )
-	       client
-        ;;   
-
+	       dockge
+        ;;
+	    3 )
+           docker-ui
+	    ;;
         0 )
            back
         ;;

@@ -27,14 +27,14 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#服务端
-function server(){
-    wget -O neutrino-proxy-server.sh ${repo_url}program/neutrino-proxy/neutrino-proxy-server.sh && chmod +x neutrino-proxy-server.sh && ./neutrino-proxy-server.sh
+#only
+function caddy_only(){
+    wget -O caddy-only.sh ${repo_url}program/caddy/caddy-only.sh && chmod +x caddy-only.sh && ./caddy-only.sh
 }
 
-#客户端
-function client(){
-    wget -O neutrino-proxy-client.sh ${repo_url}program/neutrino-proxy/neutrino-proxy-client.sh && chmod +x neutrino-proxy-client.sh && ./neutrino-proxy-client.sh
+#cache
+function caddy_cache(){
+    wget -O caddy-cache.sh ${repo_url}program/caddy/caddy-cache.sh && chmod +x caddy-cache.sh && ./caddy-cache.sh
 }
 
 #返回主脚本
@@ -50,20 +50,19 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-dev "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
+    green " 1. Caddy纯净部署" 
+    green " 2. Caddy附带插件"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           server
+           caddy_only
 	    ;;
         2 )
-	       client
-        ;;   
-
+	       caddy_cache
+        ;;
         0 )
            back
         ;;
