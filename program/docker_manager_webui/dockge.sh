@@ -25,14 +25,20 @@ services:
   dockge:
     image: louislam/dockge:1
     restart: unless-stopped
-    ports:
-      - $PORT:5001
+    networks:
+      hypernet:
+        ipv4_address: 172.20.20.10
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/app/data
       - /root/data/docker_data:/root/data/docker_data
     environment:
       - DOCKGE_STACKS_DIR=/root/data/docker_data
+      
+networks:
+  hypernet:
+    external: true
+    
 EOF
 
 # 启动容器

@@ -31,8 +31,13 @@ services:
         volumes:
             - '/dockerData/portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
-        ports:
-            - '$PORT:9000'
+    networks:
+      hypernet:
+        ipv4_address: 172.20.20.11
+
+networks:
+  hypernet:
+    external: true
 EOF
 
 # 启动容器

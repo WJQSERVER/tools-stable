@@ -17,7 +17,13 @@ read -p "请输入容器端口: " PORT
 
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
-#read
+    networks:
+      hypernet:
+        ipv4_address: 172.20.
+
+networks:
+  hypernet:
+    external: true
 EOF
 
 # 启动容器

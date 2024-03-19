@@ -68,6 +68,8 @@ cat <<EOF > /root/data/caddy/Caddyfile
     debug
     http_port 80
     https_port 443
+    order cache before rewrite
+    cache    
 }
 
 :80 {

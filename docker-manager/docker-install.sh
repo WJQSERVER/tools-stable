@@ -33,6 +33,9 @@ cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
+#创建子网
+docker network create --subnet=172.20.0.0/16 --ipv6 --subnet=fd00:a380:a321:c0::/80 hypernet
+
 #重启Docker
 systemctl restart docker
 

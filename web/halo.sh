@@ -1,11 +1,14 @@
 #!/bin/bash
 
-# 检查是否已安装 Docker 和 Docker Compose
-command -v docker >/dev/null 2>&1 || { echo >&2 "请先安装 Docker！"; exit 1; }
-command -v docker-compose >/dev/null 2>&1 || { echo >&2 "请先安装 Docker Compose！"; exit 1; }
+# 检查是否已经安装 Docker 和 Docker Compose
+if ! command -v docker >/dev/null || ! command -v docker-compose >/dev/null; then
+    echo "请先安装 Docker 和 Docker Compose。"
+    exit 1
+fi
 
-# 创建 Halo 目录
-mkdir ~/halo && cd ~/halo
+# 创建目录
+mkdir -p /root/data/docker_data/halo
+cd /root/data/docker_data/halo
 
 # 获取用户输入的端口号
 echo -n "请输入要映射的端口号（例如：8090）："
@@ -20,18 +23,17 @@ version: "3"
 
 services:
   halo:
-    image: halohub/halo:2.12
+    image: halohub/halo:2.13
     container_name: halo
     restart: on-failure:3
     depends_on:
       halodb:
         condition: service_healthy
     networks:
-      halo_network:
+      hypernet:
+        ipv4_address: 172.20.100.10
     volumes:
       - ./halo2:/root/.halo2
-    ports:
-      - "$port:8090"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
       interval: 30s
@@ -49,13 +51,12 @@ services:
   halodb:
     image: postgres:15.4
     container_name: halodb
-    restart: on-failure:3
+    restart: always
     networks:
-      halo_network:
+      hypernet:
+        ipv4_address: 172.20.100.20
     volumes:
       - ./db:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     healthcheck:
       test: [ "CMD", "pg_isready" ]
       interval: 10s
@@ -68,7 +69,9 @@ services:
       - PGUSER=halo
 
 networks:
-  halo_network:
+  hypernet:
+    external: true
+
 EOF
 
 # 启动 HALO

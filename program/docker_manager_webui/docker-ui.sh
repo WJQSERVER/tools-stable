@@ -12,9 +12,6 @@ fi
 mkdir -p /root/data/docker_data/docker-ui
 cd /root/data/docker_data/docker-ui
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
 #拉取镜像
 docker pull joinsunsoft/docker.ui
 
@@ -24,8 +21,6 @@ version: '3.9'
 services:
     docker.ui:
         image: joinsunsoft/docker.ui
-        ports:
-            - '$PORT:8999'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
 
