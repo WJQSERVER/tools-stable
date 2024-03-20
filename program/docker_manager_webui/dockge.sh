@@ -12,12 +12,6 @@ fi
 mkdir -p /root/data/docker_data/dockge
 cd /root/data/docker_data/dockge
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
-#拉取镜像
-docker pull louislam/dockge:1
-
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
 version: "3.8"
@@ -38,7 +32,7 @@ services:
 networks:
   hypernet:
     external: true
-    
+
 EOF
 
 # 启动容器
