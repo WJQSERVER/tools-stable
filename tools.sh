@@ -12,8 +12,8 @@ sleep 1
 
 conf_file="repo_url.conf"
 
-#BETA版
-repo_url="https://raw.githubusercontent.com/WJQSERVER/tools/main/"
+#Stable版
+repo_url="https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/"
 
 echo "repo_url=$repo_url" > "$conf_file"
 

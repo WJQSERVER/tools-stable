@@ -12,9 +12,6 @@ fi
 mkdir -p /root/data/docker_data/it-tools
 cd /root/data/docker_data/it-tools
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
 version: '3.3'
@@ -22,9 +19,14 @@ services:
     it-tools:
         container_name: it-tools
         restart: unless-stopped
-        ports:
-            - '$PORT:80'  #8380可以修改成服务器上未使用过的其他端口
+        networks:
+          hypernet:
+            ipv4_address: 172.20.20.18
         image: 'corentinth/it-tools:latest'
+
+networks:
+  hypernet:
+    external: true        
 EOF
 
 # 启动容器
