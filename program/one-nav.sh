@@ -12,23 +12,24 @@ fi
 mkdir -p /root/data/docker_data/onenav
 cd /root/data/docker_data/onenav
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
 version: '3.9'
 services:
     onenav:
-        image: 'helloz/onenav:0.9.34'
+        image: 'helloz/onenav'
         volumes:
             - './data:/data/wwwroot/default/data'
-        ports:
-            - '$PORT:80'
+        networks:
+          hypernet:
+            ipv4_address: 172.20.20.17
         container_name: onenav
         tty: true
         stdin_open: true
 
+networks:
+  hypernet:
+    external: true
 EOF
 
 # 启动容器
@@ -36,8 +37,6 @@ docker-compose up -d
 
 # 提示服务访问地址
 echo "服务已成功启动！"
-echo "请访问以下地址来访问您的服务："
-echo "http://<服务器IP>:$PORT"
 
 #回到root目录
 cd /root
