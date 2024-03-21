@@ -12,9 +12,6 @@ fi
 mkdir -p /root/data/docker_data/alist
 cd /root/data/docker_data/alist
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
 #拉取镜像
 docker pull xhofe/alist:latest
 # 创建 docker-compose.yml 文件
@@ -26,14 +23,18 @@ services:
         container_name: alist
         volumes:
             - '/etc/alist:/opt/alist/data'
-        ports:
-            - '$PORT:5244'
+        networks:
+          hypernet:
+            ipv4_address: 172.20.20.14
         environment:
             - PUID=0
             - PGID=0
             - UMASK=022
         restart: unless-stopped
 
+networks:
+  hypernet:
+    external: true
 EOF
 
 # 启动容器
@@ -41,8 +42,6 @@ docker-compose up -d
 
 # 提示服务访问地址
 echo "服务已成功启动！"
-echo "请访问以下地址来访问您的服务："
-echo "http:/<服务器IP>:$PORT"
 echo "无法登陆请参考官方文档alist.nn.ci/zh"
 
 #回到root目录

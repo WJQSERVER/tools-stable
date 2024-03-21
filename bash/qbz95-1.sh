@@ -1,5 +1,5 @@
 #! /bin/bash
-#Advanced Experimental Kit (Code971) By WJQSERVER-STUDIO_WJQSERVER
+#Advanced Experimental Kit (Code95-1) By WJQSERVER-STUDIO_WJQSERVER
 #https://github.com/WJQSERVER/tools-stable
 
 if [[ -f "/etc/os-release" ]]; then
@@ -20,6 +20,17 @@ fi
 
 read -p "请输入SSH端口(请确保输入正确以开启UFW防火墙): " PORT
 
+cat > /etc/apt/sources.list <<EOF
+deb https://mirrors.ustc.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
+deb-src https://mirrors.ustc.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
+deb https://mirrors.ustc.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb-src https://mirrors.ustc.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb https://mirrors.ustc.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+deb-src https://mirrors.ustc.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+deb https://mirrors.ustc.edu.cn/debian-security/ bookworm-security main contrib non-free non-free-firmware
+deb-src https://mirrors.ustc.edu.cn/debian-security/ bookworm-security main contrib non-free non-free-firmware
+EOF
+
 echo "开始更新软件包"
 apt update
 apt install wget curl vim git sudo -y
@@ -30,7 +41,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo systemctl start docker
 sudo usermod -aG docker $USER
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://gh.1888866.xyz/https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker --version
 docker-compose --version
@@ -56,7 +67,7 @@ docker network create --subnet=172.20.0.0/16 --ipv6 --subnet=fd00:a380:a321:c0::
 echo "开始安装Caddy2"
 mkdir -p /root/data/caddy
 cd /root/data/caddy
-wget https://github.com/caddyserver/caddy/releases/latest/download/caddy_2.7.6_linux_amd64.tar.gz
+wget https://gh.1888866.xyz/https://github.com/caddyserver/caddy/releases/latest/download/caddy_2.7.6_linux_amd64.tar.gz
 tar -xzvf caddy_2.7.6_linux_amd64.tar.gz
 rm caddy_2.7.6_linux_amd64.tar.gz
 chmod +x /root/data/caddy/caddy

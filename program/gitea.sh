@@ -12,9 +12,6 @@ fi
 mkdir -p /root/data/docker_data/*
 cd /root/data/docker_data/*
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
 version: "2"
@@ -27,10 +24,13 @@ services:
       - ./config:/etc/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "$PORT:3000"
-      - "2222:2222"
+    networks:
+      hypernet:
+        ipv4_address: 172.20.20.15
 
+networks:
+  hypernet:
+    external: true
 EOF
 
 # 启动容器

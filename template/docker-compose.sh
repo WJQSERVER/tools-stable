@@ -19,7 +19,7 @@ read -p "请输入容器端口: " PORT
 cat > docker-compose.yml <<EOF
     networks:
       hypernet:
-        ipv4_address: 172.20.
+        ipv4_address: 172.20.20.
 
 networks:
   hypernet:
