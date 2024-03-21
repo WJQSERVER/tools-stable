@@ -1,9 +1,9 @@
-# WJQserver-tools-BETA
+# WJQserver-tools-Stable
 由WJQserver Studio推出的快捷Linux工具箱-测试版本
 
 V.0.9
 ```
-wget -O tools.sh https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/tools.sh && chmod +x tools.sh && clear && ./tools.sh
+wget -O tools-stable.sh https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/tools-stable.sh && chmod +x tools-stable.sh && clear && ./tools-stable.sh
 ```
 # 声明
 
