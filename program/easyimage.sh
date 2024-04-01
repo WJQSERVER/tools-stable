@@ -9,14 +9,28 @@ if ! command -v docker >/dev/null || ! command -v docker-compose >/dev/null; the
 fi
 
 # 创建目录
-mkdir -p /root/data/docker_data/*
-cd /root/data/docker_data/*
+mkdir -p /root/data/docker_data/easyimage
+cd /root/data/docker_data/easyimage
 
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
+version: '3.3'
+services:
+  easyimage:
+    image: ddsderek/easyimage:latest
+    container_name: easyimage
+    environment:
+      - TZ=Asia/Shanghai
+      - PUID=1000
+      - PGID=1000
+      - DEBUG=false
+    volumes:
+      - '/root/data/docker_data/easyimage/config:/app/web/config'
+      - '/root/data/docker_data/easyimage/i:/app/web/i'
+    restart: unless-stopped
     networks:
       hypernet:
-        ipv4_address: 172.20.20.
+        ipv4_address: 172.20.20.20
 
 networks:
   hypernet:
