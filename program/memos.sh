@@ -19,13 +19,18 @@ read -p "请输入容器端口: " PORT
 cat > docker-compose.yml <<EOF
 version: '3.9'
 services:
-    memos:
-        image: 'neosmemo/memos:stable'
-        volumes:
-            - './:/var/opt/memos'
-        ports:
-            - '$PORT:5230'
-        container_name: memos
+  memos:
+    image: 'neosmemo/memos:stable'
+    volumes:
+      - './:/var/opt/memos'
+    container_name: memos
+    networks:
+      hypernet:
+        ipv4_address: 172.20.20.26
+
+networks:
+  hypernet:
+    external: true        
 EOF
 
 # 启动容器

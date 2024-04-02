@@ -34,12 +34,12 @@ function nginx_docker(){
 
 #
 function nginxproxymanager(){
-
+    wget -O nginxproxymanager.sh ${repo_url}program/nginx/nginxproxymanager.sh && chmod +x nginxproxymanager.sh && ./nginxproxymanager.sh
 }
 
 #
 function safeline(){
-
+    wget -O safeline.sh ${repo_url}program/nginx/safeline.sh && chmod +x safeline.sh && ./safeline.sh
 }
 
 #返回主脚本
@@ -55,39 +55,23 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-dev "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
-    green " 3. "
-    green " 4. " 
-    green " 5. "
-    green " 6. "
-    green " 7. "
+    green " 1. Nginx(Docker)" 
+    green " 2. Nginx Proxy Manager"
+    green " 3. Safeline(雷池WAF)"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           #
+           nginx_docker
 	    ;;
         2 )
-	       #
+	       nginxproxymanager
         ;;
 	    3 )
-           #
-	    ;;
-        4 )
-	       #
-        ;;
-	    5 )
-           #
-	    ;;
-        6 )
-	       #
-        ;;
-	    7 )
-           #
-	    ;;   
+           safeline
+	    ;;  
 
         0 )
            back

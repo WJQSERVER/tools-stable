@@ -22,17 +22,21 @@ docker pull ht944/rabbitpro:latest
 cat > docker-compose.yml <<EOF
 version: '3.9'
 services:
-    rabbitpro:
-        #image: 'ht944/rabbitpro:latest'
-        image: 'yanyuwangluo/qrbbitpro:latest'
-        tty: true
-        stdin_open: true
-        volumes:
-            - './data:/Rabbit/data'
-        ports:
-            - '$PORT:1234'
-        container_name: rabbitpro
+  rabbitpro:
+      #image: 'ht944/rabbitpro:latest'
+      image: 'shufflewzc/qrbbitpro:latest'
+      tty: true
+      stdin_open: true
+      volumes:
+        - './data:/Rabbit/data'
+      container_name: rabbitpro
+    networks:
+      hypernet:
+        ipv4_address: 172.20.20.23
 
+networks:
+  hypernet:
+    external: true
 EOF
 
 # 启动容器

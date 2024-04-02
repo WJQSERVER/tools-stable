@@ -10,21 +10,22 @@ fi
 data_dir="/root/data/docker_data/uptime"
 mkdir -p "$data_dir"
 
-# 提示用户输入容器端口
-read -p "请输入需要映射的管理界面端口,默认为3000端口: " container_port
-container_port=${container_port:-3000}
-
 # 创建 Docker Compose 配置文件
 cat > "$data_dir/docker-compose.yml" <<EOF
 version: '3.8'
 services:
   uptime-kuma:
     image: louislam/uptime-kuma
-    ports:
-      - $container_port:3001
     volumes:
       - ./data:/app/data
     restart: always
+    networks:
+      hypernet:
+        ipv4_address: 172.20.20.27
+
+networks:
+  hypernet:
+    external: true    
 EOF
 
 # 切换到数据存储目录

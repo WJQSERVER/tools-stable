@@ -22,18 +22,22 @@ docker pull nuanxinqing123/qltools:latest
 cat > docker-compose.yml <<EOF
 version: '3.9'
 services:
-    qltools:
-        image: 'nuanxinqing123/qltools:latest'
-        ports:
-            - '$PORT:15000'
-        volumes:
-            - './plugin:/QLTools/plugin'
-            - './config:/QLTools/config'
-        container_name: QLTools
-        tty: true
-        stdin_open: true
-        restart: always
+  qltools:
+    image: 'nuanxinqing123/qltools:latest'
+    volumes:
+      - './plugin:/QLTools/plugin'
+      - './config:/QLTools/config'
+    container_name: QLTools
+    tty: true
+    stdin_open: true
+    restart: always
+    networks:
+      hypernet:
+        ipv4_address: 172.20.20.24
 
+networks:
+  hypernet:
+    external: true
 EOF
 
 # 启动容器
