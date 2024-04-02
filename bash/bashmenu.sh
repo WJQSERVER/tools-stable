@@ -66,6 +66,11 @@ function pve-info(){
 wget -O pve-info.sh ${repo_url}bash/pve-info.sh && chmod +x pve-info.sh && ./pve-info.sh
 }
 
+#一键配置环境
+function aek971(){
+    wget -O aek971.sh https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/bash/aek971.sh && chmod +x aek971.sh && ./aek971.sh
+}
+
 #返回主脚本
 function back(){
     wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && ./main.sh
@@ -81,10 +86,10 @@ function start_menu(){
     red " 本脚本仅用于链接到其他作者的脚本，不做任何保证 "
     yellow " =================================================="
     green " 1. SKY-BOX_BlueSkyXN综合工具箱" 
-    green " 2. 科技Lion的脚本"
+    green " 2. 科技Lion工具箱·"
     green " 3. PVE-source(by Jazz)"
-    green " 4. PVE信息补充脚本" 
-    green " 5. XX"
+    green " 4. PVE信息补充" 
+    green " 5. WJQserver Studio边缘节点一键部署"
     green " 6. XX"
     green " 7. XX"
     yellow " =================================================="
@@ -105,7 +110,7 @@ function start_menu(){
 	       pve-info
         ;;
 	    5 )
-           docker-container
+           aek971
 	    ;;
         6 )
 	       test-tool
