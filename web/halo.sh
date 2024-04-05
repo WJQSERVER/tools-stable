@@ -10,10 +10,6 @@ fi
 mkdir -p /root/data/docker_data/halo
 cd /root/data/docker_data/halo
 
-# 获取用户输入的端口号
-echo -n "请输入要映射的端口号（例如：8090）："
-read PORT
-
 #站点地址
 read -p "请输入站点地址(例如https://example.com/): " WEBSITE_URL
 
@@ -23,7 +19,7 @@ version: "3"
 
 services:
   halo:
-    image: halohub/halo:2.13
+    image: halohub/halo:2.14
     container_name: halo
     restart: on-failure:3
     depends_on:
@@ -48,6 +44,7 @@ services:
       - --spring.sql.init.platform=postgresql
       # 外部访问地址，请根据实际需要修改
       - --halo.external-url=$WEBSITE_URL
+      - --halo.cache.page.disabled=false
   halodb:
     image: postgres:15.4
     container_name: halodb
