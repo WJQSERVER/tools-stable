@@ -88,29 +88,60 @@ system_time=$(date +"%Y-%m-%d %I:%M %p")
 # 获取当前系统时区
 current_timezone=$(timedatectl show --property=Timezone --value)
 
+# 获取运行时间
+runtime=$(cat /proc/uptime | awk -F. '{run_days=int($1 / 86400);run_hours=int(($1 % 86400) / 3600);run_minutes=int(($1 % 3600) / 60); if (run_days > 0) printf("%d天 ", run_days); if (run_hours > 0) printf("%d时 ", run_hours); printf("%d分\n", run_minutes)}')
+
+# 网络拥塞算法
+congestion_algorithm=$(sysctl -n net.ipv4.tcp_congestion_control)
+queue_algorithm=$(sysctl -n net.core.default_qdisc)
+
+# 獲取總流量
+awk -v interface="$interface" 'BEGIN { rx_total = 0; tx_total = 0 }
+        NR > 2 && $1 == interface { rx_total += $2; tx_total += $10 }
+        END {
+            rx_units = "Bytes";
+            tx_units = "Bytes";
+            if (rx_total > 1024) { rx_total /= 1024; rx_units = "KB"; }
+            if (rx_total > 1024) { rx_total /= 1024; rx_units = "MB"; }
+            if (rx_total > 1024) { rx_total /= 1024; rx_units = "GB"; }
+
+            if (tx_total > 1024) { tx_total /= 1024; tx_units = "KB"; }
+            if (tx_total > 1024) { tx_total /= 1024; tx_units = "MB"; }
+            if (tx_total > 1024) { tx_total /= 1024; tx_units = "GB"; }
+        }' /proc/net/dev
+
 # 显示系统信息
-echo "系统信息:"
+echo "系統信息:"
 echo "---------------------------"
-echo "主机名: $hostname"
-echo "运营商: $isp"
-echo "发行版版本：$pretty_name"
-echo "CPU占用: $cpu_usage%"
+echo "主機名: $hostname"
+echo "運營商: $isp"
+echo "發行版版本：$pretty_name"
+echo "Linux内核版本: $linux_version"
+echo "虛擬化：$virtualization_architecture"
+echo "---------------------------"
+echo "CPU型號: $cpu_model"
+echo "CPU利用率: $cpu_usage%"
+echo "CPU核心數: $cpu_cores"
+echo "CPU架構: $cpu_arch"
+echo "虛擬化支持: $virtualization_support"
+echo "---------------------------"
 echo "物理内存：$used_mem/$total_mem ($used_percentage%)"
-echo "硬盘占用: $disk_usage"
-echo "公网IPv4地址: $public_ipv4"
-echo "IPv6地址: $local_ipv6"
-echo "CPU型号: $cpu_model"
-echo "CPU核心数: $cpu_cores"
 echo "虚拟内存: $swap_memory"
-echo "Linux版本: $linux_version"
-echo "虚拟化：$virtualization_architecture"
-echo "CPU架构: $cpu_arch"
-echo "虚拟化支持: $virtualization_support"
-echo "所在地区: $country"
-echo "所在城市: $city"
-echo "系统时间: $system_time"
-echo "系统时区：$current_timezone"
+echo "硬碟占用: $disk_usage"
 echo "---------------------------"
+echo "公網IPv4地址: $public_ipv4"
+echo "IPv6地址: $local_ipv6"
+echo "網路擁塞算法: $congestion_algorithm $queue_algorithm"
+echo "总接收: $rx_total $rx_units"
+echo "总发送: $tx_total $tx_units"
+echo "---------------------------"
+echo "所在地區: $country"
+echo "所在城市: $city"
+echo "系统時間: $system_time"
+echo "系统時區：$current_timezone"
+echo "---------------------------"
+echo "系統運行時長: $runtime"
+echo
 
 #回到root目录
 cd /root
