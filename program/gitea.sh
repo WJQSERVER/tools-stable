@@ -9,8 +9,8 @@ if ! command -v docker >/dev/null || ! command -v docker-compose >/dev/null; the
 fi
 
 # 创建目录
-mkdir -p /root/data/docker_data/*
-cd /root/data/docker_data/*
+mkdir -p /root/data/docker_data/gitea
+cd /root/data/docker_data/gitea
 
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
