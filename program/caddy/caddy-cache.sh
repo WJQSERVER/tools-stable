@@ -3,17 +3,19 @@
 clear
 
 #提示
-echo "将会附带caddyserver/cache-handler和ueffel/caddy-brotli插件"
+echo "将会附带多个插件"
+sleep 1
+
 # 创建目录
 mkdir -p /root/data/caddy
 cd /root/data/caddy
 
 #下载
-wget https://github.com/caddyserver/caddy/releases/latest/download/caddy_2.7.6_linux_amd64.tar.gz
+wget https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
 
 #解压
-tar -xzvf caddy_2.7.6_linux_amd64.tar.gz
-rm caddy_2.7.6_linux_amd64.tar.gz
+tar -xzvf caddy.tar.gz
+rm caddy.tar.gz
 
 #赋权
 chmod +x /root/data/caddy/caddy

@@ -56,9 +56,9 @@ docker network create --subnet=172.20.0.0/16 --ipv6 --subnet=fd00:a380:a321:c0::
 echo "开始安装Caddy2"
 mkdir -p /root/data/caddy
 cd /root/data/caddy
-wget https://github.com/caddyserver/caddy/releases/latest/download/caddy_2.7.6_linux_amd64.tar.gz
-tar -xzvf caddy_2.7.6_linux_amd64.tar.gz
-rm caddy_2.7.6_linux_amd64.tar.gz
+wget https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
+tar -xzvf caddy.tar.gz
+rm caddy.tar.gz
 chmod +x /root/data/caddy/caddy
 chown root:root /root/data/caddy/caddy
 
@@ -238,5 +238,10 @@ sudo ufw deny from 2602:80d:1000:b0cc:e::/80
 sudo ufw deny from 2620:96:e000:b0cc:e::/80
 sudo ufw allow 9000
 sudo ufw allow 9001
+
+echo "开始安装补丁"
+sudo mkdir -p /var/log/journal && sudo systemctl restart systemd-journald && sudo journalctl --flush
+grep -q "^Storage=" /etc/systemd/journald.conf && sudo sed -i 's/^Storage=.*/Storage=persistent/' /etc/systemd/journald.conf || echo "Storage=persistent" | sudo tee -a /etc/systemd/journald.conf > /dev/null && sudo systemctl restart systemd-journald && sudo journalctl --flush
+grep -q "^Storage=" /etc/systemd/journald.conf && sudo sed -i 's/^Storage=.*/Storage=none/' /etc/systemd/journald.conf || echo "Storage=none" | sudo tee -a /etc/systemd/journald.conf > /dev/null && sudo systemctl restart systemd-journald
 
 echo "环境部署完成"
