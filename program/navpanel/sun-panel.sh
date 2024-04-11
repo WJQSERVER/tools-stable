@@ -30,7 +30,7 @@ services:
       - ./database:/app/database
     networks:
       hypernet:
-        ipv4_address: 172.20.20.
+        ipv4_address: 172.20.20.22
 
 networks:
   hypernet:

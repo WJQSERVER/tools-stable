@@ -12,9 +12,6 @@ fi
 mkdir -p /root/data/docker_data/koishi
 cd /root/data/docker_data/koishi
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
 version: '3.9'

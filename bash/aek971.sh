@@ -244,4 +244,7 @@ sudo mkdir -p /var/log/journal && sudo systemctl restart systemd-journald && sud
 grep -q "^Storage=" /etc/systemd/journald.conf && sudo sed -i 's/^Storage=.*/Storage=persistent/' /etc/systemd/journald.conf || echo "Storage=persistent" | sudo tee -a /etc/systemd/journald.conf > /dev/null && sudo systemctl restart systemd-journald && sudo journalctl --flush
 grep -q "^Storage=" /etc/systemd/journald.conf && sudo sed -i 's/^Storage=.*/Storage=none/' /etc/systemd/journald.conf || echo "Storage=none" | sudo tee -a /etc/systemd/journald.conf > /dev/null && sudo systemctl restart systemd-journald
 
+echo "开始安装Fail2Ban防爆破"
+apt install fail2ban
+
 echo "环境部署完成"
