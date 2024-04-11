@@ -1,4 +1,5 @@
 #! /bin/bash
+#删除腾讯云控,保护隐私安全
 
 systemctl stop tat_agent
 systemctl disable tat_agent
