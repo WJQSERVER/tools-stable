@@ -93,10 +93,6 @@ cat <<EOF > /root/data/caddy/Caddyfile
 }
 EOF
 
-#安装插件
-./caddy add-package github.com/caddyserver/cache-handler
-./caddy add-package github.com/ueffel/caddy-brotli
-
 #赋权
 chown root:root /root/data/caddy/Caddyfile
 

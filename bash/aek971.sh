@@ -160,11 +160,11 @@ cat <<EOF > /root/data/caddy/Caddyfile
 }
 EOF
 
-./caddy add-package github.com/caddyserver/cache-handler
-./caddy add-package github.com/ueffel/caddy-brotli
-./caddy add-package github.com/caddyserver/transform-encoder
-./caddy add-package github.com/RussellLuo/caddy-ext/ratelimit
-./caddy add-package github.com/caddy-dns/cloudflare
+#./caddy add-package github.com/caddyserver/cache-handler
+#./caddy add-package github.com/ueffel/caddy-brotli
+#./caddy add-package github.com/caddyserver/transform-encoder
+#./caddy add-package github.com/RussellLuo/caddy-ext/ratelimit
+#./caddy add-package github.com/caddy-dns/cloudflare
 chown root:root /root/data/caddy/Caddyfile
 systemctl daemon-reload
 systemctl enable caddy.service

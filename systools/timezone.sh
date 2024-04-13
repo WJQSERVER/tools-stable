@@ -25,7 +25,7 @@ echo "1. 亚洲/上海"
 echo "2. 美洲/纽约"
 echo "3. 欧洲/伦敦"
 echo "4. 澳大利亚/悉尼"
-echo "5. 自定义时区"
+echo "0. 自定义时区"
 
 # 提示用户选择时区
 read -p "请选择时区（1-5）： " option
@@ -44,6 +44,8 @@ case $option in
         timezone="Australia/Sydney"
         ;;
     5)
+        timezone="Asia/Hong_Kong"    
+    0)
         read -p "请输入自定义时区： " custom_timezone
         timezone=$custom_timezone
         ;;
