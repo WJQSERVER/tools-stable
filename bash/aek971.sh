@@ -246,5 +246,8 @@ grep -q "^Storage=" /etc/systemd/journald.conf && sudo sed -i 's/^Storage=.*/Sto
 
 echo "开始安装Fail2Ban防爆破"
 apt install fail2ban
+systemctl enable fail2ban
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+rm -rf /etc/fail2ban/jail.d/*
 
 echo "环境部署完成"

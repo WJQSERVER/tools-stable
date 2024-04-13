@@ -20,8 +20,8 @@ services:
         image: 'johngong/qbittorrent:latest'
         restart: unless-stopped
         volumes:
-            - '/下载位置:/Downloads'
-            - '/配置文件位置:/config'
+            - './download:/Downloads'
+            - './config:/config'
         ports:
             - '8989:8989'
             - '6881:6881/udp'
