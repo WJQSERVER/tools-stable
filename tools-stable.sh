@@ -29,13 +29,6 @@ if [[ $confirm != [Yy] ]]; then
     exit 1
 fi
 
-# 检查文件是否存在并且包含repo_url值
-if [[ -f "$conf_file" && $(grep -c "^repo_url=" "$conf_file") -gt 0 ]]; then
-  sed -i "s/^repo_url=.*/repo_url=$repo_url/" "$conf_file"
-else
-  echo "repo_url=$repo_url" > "$conf_file"
-fi
-
 #install變量
 # 检测发行版类型
 if [ -f /etc/os-release ]; then
