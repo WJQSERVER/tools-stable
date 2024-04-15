@@ -70,9 +70,9 @@ function back(){
 #主菜单
 function start_menu(){
     clear
-    yellow " WJQserver Studio 工具箱 BETA版 "
-    green " WJQserver Studio tools BETA" 
-    yellow " FROM: https://github.com/WJQSERVER/tools-dev "
+    yellow " WJQserver Studio 工具箱 Stable"
+    green " WJQserver Studio tools-stable" 
+    yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
     green " 1. " 
