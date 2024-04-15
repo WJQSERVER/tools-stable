@@ -46,7 +46,7 @@ else
 fi
 
 function apt(){ 
-cat > "$file_path" << EOF
+cat > "$conf_file" << EOF
 repo_url=$repo_url
 install=apt
 EOF
@@ -54,7 +54,7 @@ EOF
 }
 
 function yum(){
-cat > "$file_path" << EOF
+cat > "$conf_file" << EOF
 repo_url=$repo_url
 install=yum
 EOF
@@ -62,7 +62,7 @@ EOF
 }
 
 function apk(){
-cat > "$file_path" << EOF
+cat > "$conf_file" << EOF
 repo_url=$repo_url
 install=apk
 EOF

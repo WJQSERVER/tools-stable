@@ -2,6 +2,6 @@
 
 source "repo_url.conf"
 
-${install} btop
+$install btop
 
 btop
