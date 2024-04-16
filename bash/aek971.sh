@@ -247,4 +247,33 @@ rm -rf /etc/fail2ban/jail.d/*
 wget -O /etc/fail2ban/jail.d/sshd.local https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/systools/firewall/fail2ban/sshd.local
 systemctl restart fail2ban
 
+echo "开启BBR_fq"
+sudo echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+sudo echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sudo sysctl -p
+
+#写入水印
+cat > /etc/motd <<EOF
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+##########################################################################
+ _       __       __   ____
+| |     / /      / /  / __ \   _____  ___    _____ _   __  ___    _____
+| | /| / /  __  / /  / / / /  / ___/ / _ \  / ___/| | / / / _ \  / ___/
+| |/ |/ /  / /_/ /  / /_/ /  (__  ) /  __/ / /    | |/ / /  __/ / /
+|__/|__/   \____/   \___\_\ /____/  \___/ /_/     |___/  \___/ /_/
+               _____   __                __    _
+              / ___/  / /_  __  __  ____/ /   (_)  ____
+              \__ \  / __/ / / / / / __  /   / /  / __ \
+             ___/ / / /_  / /_/ / / /_/ /   / /  / /_/ /
+            /____/  \__/  \__,_/  \__,_/   /_/   \____/
+
+##########################################################################
+EOF
+
 echo "环境部署完成"
