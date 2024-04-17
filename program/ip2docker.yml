@@ -25,4 +25,7 @@ adguard-home
 memos 172.20.20.26:5230
 uptime 172.20.20.27:3001
 mt_photos 172.20.20.28:8063
-webssh 172.20.20.29:8888        
+webssh 172.20.20.29:8888
+vanblog
+  vanblog 172.20.20.30:80
+  mango 172.20.20.31        
