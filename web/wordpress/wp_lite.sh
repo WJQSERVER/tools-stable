@@ -4,7 +4,7 @@
 source "repo_url.conf"
 
 #安装环境
-${install} php-cgi php-fpm php-curl php-gd php-mbstring php-xml php-sqlite3 sqlite3 -y
+apt install php-cgi php-fpm php-curl php-gd php-mbstring php-xml php-sqlite3 sqlite3 -y
 
 #安装Caddy2
 # 创建目录
@@ -106,8 +106,11 @@ systemctl status caddy
 mkdir -p /root/www/site
 cd /root/www/site
 wget https://cn.wordpress.org/latest-zh_CN.zip
-${install} unzip
+apt install unzip
 unzip latest-zh_CN.zip
 rm -rf latest-zh_CN.zip #删除压缩包
 chown www-data:www-data -R /root/www/site/wordpress
 chmod 755 -R /root/www/site/wordpress
+cd /root/www/site/wordpress/wp-content
+wget https://github.com/aaemnnosttv/wp-sqlite-db/blob/master/src/db.php
+chmod 777 -R /root/www/site/wordpress/wp-content/db.php

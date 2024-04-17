@@ -25,6 +25,11 @@ apt update
 apt install wget curl vim git sudo -y
 apt upgrade -y
 
+cat > /etc/resolv.conf <<EOF
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+EOF
+
 echo "开始安装Docker"
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -253,6 +258,7 @@ sudo echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
 sudo sysctl -p
 
 #写入水印
+
 cat > /etc/motd <<EOF
 
 The programs included with the Debian GNU/Linux system are free software;
