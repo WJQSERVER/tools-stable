@@ -28,6 +28,8 @@ apt upgrade -y
 cat > /etc/resolv.conf <<EOF
 nameserver 8.8.8.8
 nameserver 1.1.1.1
+nameserver 2001:4860:4860::8888
+nameserver 2606:4700:4700::1111
 EOF
 
 echo "开始安装Docker"
