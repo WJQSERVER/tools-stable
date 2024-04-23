@@ -22,7 +22,7 @@ read -p "请输入SSH端口(请确保输入正确以开启UFW防火墙): " PORT
 
 echo "开始更新软件包"
 apt update
-apt install wget curl vim git sudo -y
+apt install wget curl vim git sudo tar -y
 apt upgrade -y
 
 cat > /etc/resolv.conf <<EOF
@@ -62,10 +62,9 @@ docker network create --subnet=172.20.0.0/16 --ipv6 --subnet=fd00:a380:a321:c0::
 
 echo "开始安装Caddy2"
 mkdir -p /root/data/caddy
-cd /root/data/caddy
-wget https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
-tar -xzvf caddy.tar.gz
-rm caddy.tar.gz
+wget -O /root/data/caddy/caddy.tar.gz https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
+tar -xzvf /root/data/caddy/caddy.tar.gz
+rm /root/data/caddy/caddy.tar.gz
 chmod +x /root/data/caddy/caddy
 chown root:root /root/data/caddy/caddy
 
@@ -93,24 +92,6 @@ AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 WantedBy=multi-user.target
 EOF
 
-mkdir -p /root/data/caddy/page
-
-cat <<EOF > /root/data/caddy/page/index.html
-<html>
- <head>
- </head>
- <body>
-   <h1> Hello World </h1>
-   <h2> Hello World </h2>
-   <h3> Hello World </h3>
-   <h4> Hello World </h4>
-   <h5> Hello World </h5>
-   <h6> Hello World </h6>
- </body>
-</html>
-
-EOF
-
 cat <<EOF > /root/data/caddy/Caddyfile
 {
     debug
@@ -130,7 +111,7 @@ cat <<EOF > /root/data/caddy/Caddyfile
 }
 
 :80 {
-	root * /root/data/caddy/page
+	root * /root/data/caddy/pages/demo
 	try_files {path}/index.html
     file_server
     cache {
@@ -140,9 +121,8 @@ cat <<EOF > /root/data/caddy/Caddyfile
     }
     handle_errors {
 	    rewrite * /{err.status_code}
-	    reverse_proxy https://http.cat {
-		    header_up Host {upstream_hostport}
-	    }
+        root * /root/data/caddy/pages/errors
+        file_server
     }     
     encode gzip zstd br
 }
@@ -247,7 +227,7 @@ sudo ufw allow 9000
 sudo ufw allow 9001
 
 echo "开始安装Fail2Ban防爆破"
-apt install fail2ban
+apt install fail2ban -y
 systemctl enable fail2ban
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 rm -rf /etc/fail2ban/jail.d/*
