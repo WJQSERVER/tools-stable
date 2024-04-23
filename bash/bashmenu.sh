@@ -90,8 +90,6 @@ function start_menu(){
     green " 3. PVE-source(by Jazz)"
     green " 4. PVE信息补充" 
     green " 5. WJQserver Studio边缘节点一键部署"
-    green " 6. XX"
-    green " 7. XX"
     yellow " =================================================="
     green " 0. 返回主界面"
     echo

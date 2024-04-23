@@ -63,7 +63,7 @@ docker network create --subnet=172.20.0.0/16 --ipv6 --subnet=fd00:a380:a321:c0::
 echo "开始安装Caddy2"
 mkdir -p /root/data/caddy
 wget -O /root/data/caddy/caddy.tar.gz https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
-tar -xzvf /root/data/caddy/caddy.tar.gz
+tar -xzvf /root/data/caddy/caddy.tar.gz -C /root/data/caddy
 rm /root/data/caddy/caddy.tar.gz
 chmod +x /root/data/caddy/caddy
 chown root:root /root/data/caddy/caddy
