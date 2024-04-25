@@ -27,29 +27,14 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#
-function networkinfo(){
-    wget -O networkinfo.sh ${repo_url}systools/network/networkinfo.sh && chmod +x networkinfo.sh && ./networkinfo.sh
+#UFW
+function ufw(){
+    wget -O ufw.sh ${repo_url}systools/firewall/ufw.sh && chmod +x ufw.sh && ./ufw.sh
 }
 
-#
-function ipv_switch(){
-    wget -O ipv-switch.sh ${repo_url}systools/network/ipv-switch.sh && chmod +x ipv-switch.sh && ./ipv-switch.sh
-}
-
-#
-function bbr(){
-    wget -O bbr-manager.sh ${repo_url}systools/network/bbr-manager.sh && chmod +x bbr-manager.sh && ./bbr-manager.sh
-}
-
-#
-function change_dns(){
-    wget -O change_dns.sh ${repo_url}systools/network/change_dns.sh && chmod +x change_dns.sh && ./change_dns.sh
-}
-
-#
-function check_port_usage(){
-    wget -O check_port_usage.sh ${repo_url}systools/network/check_port_usage.sh && chmod +x check_port_usage.sh && ./check_port_usage.sh
+#fail2ban
+function fail2ban(){
+    wget -O fail2ban.sh ${repo_url}systools/firewall/fail2ban/fail2ban.sh && chmod +x fail2ban.sh && ./fail2ban.sh
 }
 
 #返回主脚本
@@ -65,31 +50,19 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. 網路側信息查看" 
-    green " 2. IPv4/IPv6優先級切換"
-    green " 3. BBR管理面板"
-    green " 4. 更換DNS" 
-    green " 5. 檢測端口占用"
+    green " 1. 更换密码" 
+    green " 2. 生成强密码"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           networkinfo
+           change_root_password
 	    ;;
         2 )
-	       ipv_switch
+	       generate_strong_password
         ;;
-	    3 )
-           bbr
-	    ;;
-        4 )
-	       change_dns
-        ;;
-	    5 )
-           check_port_usage
-	    ;;  
         0 )
            back
         ;;
