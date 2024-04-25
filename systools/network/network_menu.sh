@@ -28,31 +28,27 @@ blue(){
 }
 
 #
-function (){
+function networkinfo(){
+    wget -O networkinfo.sh ${repo_url}systools/network/networkinfo.sh && chmod +x networkinfo.sh && ./networkinfo.sh
 }
 
 #
-function (){
+function ipv_switch(){
+    wget -O ipv-switch.sh ${repo_url}systools/network/ipv-switch.sh && chmod +x ipv-switch.sh && ./ipv-switch.sh
 }
 
 #
-function (){
+function bbr(){
+    wget -O bbr-manager.sh ${repo_url}systools/network/bbr-manager.sh && chmod +x bbr-manager.sh && ./bbr-manager.sh
 }
 
 #
-function (){
+function change_dns(){
+    wget -O change_dns.sh ${repo_url}systools/network/change_dns.sh && chmod +x change_dns.sh && ./change_dns.sh
 }
 
 #
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
+function check_port_usage(){
 }
 
 #返回主脚本
@@ -68,40 +64,31 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
-    green " 3. "
-    green " 4. " 
-    green " 5. "
-    green " 6. "
-    green " 7. "
+    green " 1. 網路側信息查看" 
+    green " 2. IPv4/IPv6優先級切換"
+    green " 3. BBR管理面板"
+    green " 4. 更換DNS" 
+    green " 5. 檢測端口占用"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           #
+           networkinfo
 	    ;;
         2 )
-	       #
+	       ipv_switch
         ;;
 	    3 )
-           #
+           bbr
 	    ;;
         4 )
-	       #
+	       change_dns
         ;;
 	    5 )
-           #
-	    ;;
-        6 )
-	       #
-        ;;
-	    7 )
-           #
-	    ;;   
-
+           check_port_usage
+	    ;;  
         0 )
            back
         ;;

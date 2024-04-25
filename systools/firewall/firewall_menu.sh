@@ -27,32 +27,14 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#
-function (){
+#UFW
+function ufw(){
+    wget -O ufw.sh ${repo_url}systools/firewall/ufw.sh && chmod +x ufw.sh && ./ufw.sh
 }
 
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
+#fail2ban
+function fail2ban(){
+    wget -O fail2ban.sh ${repo_url}systools/firewall/fail2ban/fail2ban.sh && chmod +x fail2ban.sh && ./fail2ban.sh
 }
 
 #返回主脚本
@@ -68,40 +50,19 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
-    green " 3. "
-    green " 4. " 
-    green " 5. "
-    green " 6. "
-    green " 7. "
+    green " 1. 安装UFW防火墙,便捷管理防火墙规则" 
+    green " 2. 安装Fail2ban,防止SSH爆破"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           #
+           ufw
 	    ;;
         2 )
-	       #
+	       fail2ban
         ;;
-	    3 )
-           #
-	    ;;
-        4 )
-	       #
-        ;;
-	    5 )
-           #
-	    ;;
-        6 )
-	       #
-        ;;
-	    7 )
-           #
-	    ;;   
-
         0 )
            back
         ;;
