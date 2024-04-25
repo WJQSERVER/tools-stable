@@ -15,7 +15,7 @@ sleep 1
 read -p "是否返回菜单?: [Y/n]" choice
 
 if [[ "$choice" == "" || "$choice" == "Y" || "$choice" == "y" ]]; then
-    wget -O firewall_menu.sh ${repo_url}systools/firewall/firewall_menu.sh && chmod +x firewall_menu.sh && ./firewall_menu.sh
+    wget -O log_menu.sh ${repo_url}systools/log/log_menu.sh && chmod +x log_menu.sh && ./log_menu.sh
 else
     echo "脚本结束"
 fi

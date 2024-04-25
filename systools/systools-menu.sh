@@ -58,6 +58,31 @@ function network(){
     wget -O network_menu.sh ${repo_url}systools/network/network_menu.sh && chmod +x network_menu.sh && ./network_menu.sh
 }
 
+#日志配置
+function log(){
+    wget -O log_menu.sh ${repo_url}systools/log/log_menu.sh && chmod +x log_menu.sh && ./log_menu.sh
+}
+
+#防火墙
+function firewall(){
+    wget -O firewall_menu.sh ${repo_url}systools/firewall/firewall_menu.sh && chmod +x firewall_menu.sh && ./firewall_menu.sh
+}
+
+#SWAP
+function swap(){
+    wget -O swap.sh ${repo_url}systools/swap.sh && chmod +x swap.sh && ./swap.sh
+}
+
+#反腾讯云控
+function antitencent(){
+    wget -O anti_tencent_ctrl.sh ${repo_url}systools/anti_tencent_ctrl.sh && chmod +x anti_tencent_ctrl.sh && ./anti_tencent_ctrl.sh
+}
+
+#一键DD
+function dd(){
+    wget -O dd_menu.sh ${repo_url}systools/dd/dd_menu.sh && chmod +x dd_menu.sh && ./dd_menu.sh
+}
+
 #重启
 function reboot(){
 echo "即将重启"
@@ -115,31 +140,22 @@ function start_menu(){
            user
 	    ;;
         6 )
-	       bbr-manager
+	       network
         ;;
 	    7 )
-           check_port_usage
+           log
 	    ;;
         8 )
-           ufw
+           firewall
         ;;
         9 )
            swap
         ;;
         10)
-           user_management
+           antitencent
         ;;
-        11)
-           change-root-password
-        ;;
-        12)
-           create_user
-        ;;
-        13)
-           generate_strong_password
-        ;;
-        14)
-           ssh_connect
+        90)
+           dd
         ;;
         99)
            reboot
