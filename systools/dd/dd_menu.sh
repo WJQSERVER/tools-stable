@@ -28,31 +28,59 @@ blue(){
 }
 
 #
-function (){
+function debain12(){
+    echo "即将安装Debian-12系统,原系统数据将被清空"
+    sleep 1
+    read -p "输入新系统密码:" PASSWORD
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -debian 12 -pwd '$PASSWORD'
 }
 
 #
-function (){
+function debian11(){
+    echo "即将安装Debian-11系统,原系统数据将被清空"
+    sleep 1
+    read -p "输入新系统密码:" PASSWORD
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -debian 11 -pwd '$PASSWORD'    
 }
 
 #
-function (){
+function debian10(){
+    echo "即将安装Debian-10系统,原系统数据将被清空"
+    sleep 1
+    read -p "输入新系统密码:" PASSWORD
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -debian 10 -pwd '$PASSWORD'    
 }
 
 #
-function (){
+function alpine(){
+    echo "即将安装Alpine-Edge系统,原系统数据将被清空"
+    sleep 1
+    read -p "输入新系统密码:" PASSWORD
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -alpine -pwd '$PASSWORD'      
 }
 
 #
-function (){
+function ubuntu(){
+    echo "即将安装Ubuntu-22.04系统,原系统数据将被清空"
+    sleep 1
+    read -p "输入新系统密码:" PASSWORD
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -ubuntu 22.04 -pwd '$PASSWORD' 
 }
 
 #
-function (){
+function almalinux(){
+    echo "即将安装Almalinux-9系统,原系统数据将被清空"
+    sleep 1
+    read -p "输入新系统密码:" PASSWORD
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -almalinux 9 -pwd '$PASSWORD'
 }
 
 #
-function (){
+function centos(){
+    echo "即将安装CentOS-8系统,原系统数据将被清空"
+    sleep 1
+    read -p "输入新系统密码:" PASSWORD
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -centos 8 -pwd '$PASSWORD'
 }
 
 #返回主脚本
@@ -68,38 +96,38 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
-    green " 3. "
-    green " 4. " 
-    green " 5. "
-    green " 6. "
-    green " 7. "
+    green " 1. Debian-12" 
+    green " 2. Debian-11"
+    green " 3. Debian-10"
+    green " 4. Alpine-Edge" 
+    green " 5. Ubuntu-22.04"
+    green " 6. AlmaLinux-9"
+    green " 7. CentOS-8"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           #
+           debain12
 	    ;;
         2 )
-	       #
+	       debian11
         ;;
 	    3 )
-           #
+           debian10
 	    ;;
         4 )
-	       #
+	       alpine
         ;;
 	    5 )
-           #
+           ubuntu
 	    ;;
         6 )
-	       #
+	       almalinux
         ;;
 	    7 )
-           #
+           centos
 	    ;;   
 
         0 )
