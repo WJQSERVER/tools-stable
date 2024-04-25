@@ -27,19 +27,17 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#UFW
-function ufw(){
-    wget -O ufw.sh ${repo_url}systools/firewall/ufw.sh && chmod +x ufw.sh && ./ufw.sh
+function change_root_password(){
+    wget -O change_root_password.sh ${repo_url}systools/password/change_root_password.sh && chmod +x change_root_password.sh && ./change_root_password.sh
 }
 
-#fail2ban
 function fail2ban(){
-    wget -O fail2ban.sh ${repo_url}systools/firewall/fail2ban/fail2ban.sh && chmod +x fail2ban.sh && ./fail2ban.sh
+    wget -O generate_strong_password.sh ${repo_url}systools/password/generate_strong_password.sh && chmod +x generate_strong_password.sh && ./generate_strong_password.sh
 }
 
 #返回主脚本
 function back(){
-    wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && ./main.sh
+    wget -O systools-menu.sh ${repo_url}systools/systools-menu.sh && chmod +x systools-menu.sh && ./systools-menu.sh
 }
 
 #主菜单

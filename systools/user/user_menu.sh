@@ -27,37 +27,17 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#
-function (){
+function create_user(){
+    wget -O create_user.sh ${repo_url}systools/user/create_user.sh && chmod +x create_user.sh && ./create_user.sh
 }
 
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
+function user_management(){
+    wget -O user_management.sh ${repo_url}systools/user/user_management.sh && chmod +x user_management.sh && ./user_management.sh
 }
 
 #返回主脚本
 function back(){
-    wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && ./main.sh
+    wget -O systools-menu.sh ${repo_url}systools/systools-menu.sh && chmod +x systools-menu.sh && ./systools-menu.sh
 }
 
 #主菜单
@@ -68,40 +48,19 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
-    green " 3. "
-    green " 4. " 
-    green " 5. "
-    green " 6. "
-    green " 7. "
+    green " 1. 新建用户" 
+    green " 2. 管理已有用户"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           #
+           create_user
 	    ;;
         2 )
-	       #
+	       user_management
         ;;
-	    3 )
-           #
-	    ;;
-        4 )
-	       #
-        ;;
-	    5 )
-           #
-	    ;;
-        6 )
-	       #
-        ;;
-	    7 )
-           #
-	    ;;   
-
         0 )
            back
         ;;

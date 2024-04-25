@@ -28,6 +28,35 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
+#修改主机名
+function change_hostname(){
+    wget -O change_hostname.sh ${repo_url}systools/change_hostname.sh && chmod +x change_hostname.sh && ./change_hostname.sh
+}
+
+#修改时区
+function timezone(){
+    wget -O timezone.sh ${repo_url}systools/timezone.sh && chmod +x timezone.sh && ./timezone.sh
+}
+
+#修改密码
+function password(){
+    wget -O password_menu.sh ${repo_url}systools/password/password_menu.sh && chmod +x password_menu.sh && ./password_menu.sh
+}
+
+#修改SSH配置
+function ssh(){
+    wget -O ssh_menu.sh ${repo_url}systools/ssh/ssh_menu.sh && chmod +x ssh_menu.sh && ./ssh_menu.sh
+}
+
+#用户管理
+function user(){
+    wget -O user_menu.sh ${repo_url}systools/user/user_menu.sh && chmod +x user_menu.sh && ./user_menu.sh
+}
+
+#网络配置
+function network(){
+    wget -O network_menu.sh ${repo_url}systools/network/network_menu.sh && chmod +x network_menu.sh && ./network_menu.sh
+}
 
 #重启
 function reboot(){
@@ -71,26 +100,26 @@ function start_menu(){
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-         hostname
-	     ;;
+           change_hostname
+	    ;;
         2 )
-	        timezone
+	       timezone
         ;;
-	     3 )
-          ipv-switch
-	     ;;
+	    3 )
+           password
+	    ;;
         4 )
-	       networkinfo
+	       ssh
         ;;
 	     5 )
-           change_dns
-	     ;;
+           user
+	    ;;
         6 )
 	       bbr-manager
         ;;
-	     7 )
+	    7 )
            check_port_usage
-	     ;;
+	    ;;
         8 )
            ufw
         ;;

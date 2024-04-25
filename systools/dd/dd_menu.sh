@@ -85,7 +85,7 @@ function centos(){
 
 #返回主脚本
 function back(){
-    wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && ./main.sh
+    wget -O systools-menu.sh ${repo_url}systools/systools-menu.sh && chmod +x systools-menu.sh && ./systools-menu.sh
 }
 
 #主菜单

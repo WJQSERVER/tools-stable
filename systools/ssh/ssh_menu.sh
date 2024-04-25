@@ -27,37 +27,17 @@ blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
 
-#
-function (){
+function change_ssh_port(){
+    wget -O change_ssh_port.sh ${repo_url}systools/ssh/change_ssh_port.sh && chmod +x change_ssh_port.sh && ./change_ssh_port.sh
 }
 
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
-}
-
-#
-function (){
+function ssh_connect(){
+    wget -O ssh_connect.sh ${repo_url}systools/ssh/ssh_connect.sh && chmod +x ssh_connect.sh && ./ssh_connect.sh
 }
 
 #返回主脚本
 function back(){
-    wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && ./main.sh
+    wget -O systools-menu.sh ${repo_url}systools/systools-menu.sh && chmod +x systools-menu.sh && ./systools-menu.sh
 }
 
 #主菜单
@@ -68,40 +48,19 @@ function start_menu(){
     yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
     yellow " =================================================="
-    green " 1. " 
-    green " 2. "
-    green " 3. "
-    green " 4. " 
-    green " 5. "
-    green " 6. "
-    green " 7. "
+    green " 1. 修改SSH端口" 
+    green " 2. 新建对外SSH链接"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           #
+           change_ssh_port
 	    ;;
         2 )
-	       #
+	       ssh_connect
         ;;
-	    3 )
-           #
-	    ;;
-        4 )
-	       #
-        ;;
-	    5 )
-           #
-	    ;;
-        6 )
-	       #
-        ;;
-	    7 )
-           #
-	    ;;   
-
         0 )
            back
         ;;

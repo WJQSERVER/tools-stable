@@ -45,7 +45,7 @@ sleep 1
 read -p "是否返回菜单?: [Y/n]" choice
 
 if [[ "$choice" == "" || "$choice" == "Y" || "$choice" == "y" ]]; then
-    wget -O systools-menu.sh ${repo_url}systools/systools-menu.sh && chmod +x systools-menu.sh && ./systools-menu.sh
+    wget -O network_menu.sh ${repo_url}systools/network/network_menu.sh && chmod +x network_menu.sh && ./network_menu.sh
 else
     echo "脚本结束"
 fi
