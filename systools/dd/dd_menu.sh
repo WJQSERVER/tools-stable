@@ -88,6 +88,7 @@ function start_menu(){
     green " WJQserver Studio tools-stable" 
     yellow " FROM: https://github.com/WJQSERVER/tools-stable "
     green " USE:  wget -O tools.sh ${repo_url}tools.sh && chmod +x tools.sh && clear && ./tools.sh "
+    yellow " DD Script FROM: https://github.com/leitbogioro/Tools"
     yellow " =================================================="
     green " 1. Debian-12" 
     green " 2. Debian-11"
