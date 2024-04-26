@@ -11,7 +11,8 @@ mkdir -p /root/data/caddy
 cd /root/data/caddy
 
 #下载
-wget https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
+#wget https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
+wget -O /root/data/caddy/caddy.tar.gz https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
 
 #解压
 tar -xzvf caddy.tar.gz
