@@ -56,7 +56,7 @@ function alpine(){
     echo "即将安装Alpine-Edge系统,原系统数据将被清空"
     sleep 1
     read -p "输入新系统密码:" PASSWORD
-    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -alpine -pwd '$PASSWORD'      
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -alpine -pwd $PASSWORD      
 }
 
 #
@@ -64,7 +64,7 @@ function ubuntu(){
     echo "即将安装Ubuntu-22.04系统,原系统数据将被清空"
     sleep 1
     read -p "输入新系统密码:" PASSWORD
-    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -ubuntu 22.04 -pwd '$PASSWORD' 
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -ubuntu 22.04 -pwd $PASSWORD 
 }
 
 #
@@ -72,7 +72,7 @@ function almalinux(){
     echo "即将安装Almalinux-9系统,原系统数据将被清空"
     sleep 1
     read -p "输入新系统密码:" PASSWORD
-    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -almalinux 9 -pwd '$PASSWORD'
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -almalinux 9 -pwd $PASSWORD
 }
 
 #
@@ -80,7 +80,7 @@ function centos(){
     echo "即将安装CentOS-8系统,原系统数据将被清空"
     sleep 1
     read -p "输入新系统密码:" PASSWORD
-    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -centos 8 -pwd '$PASSWORD'
+    wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh && bash InstallNET.sh -centos 8 -pwd $PASSWORD
 }
 
 #返回主脚本
