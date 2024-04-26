@@ -5,3 +5,4 @@ cd /root/data/docker_data/halo
 tar -cf /root/data/backup/halo_backup.tar .
 cd /root/data/backup
 zstd halo_backup.tar -o halo_backup.tar.zst
+rm halo_backup.tar
