@@ -78,11 +78,6 @@ function x-ui_f(){
 bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh) 0.3.4.4
 }
 
-#X-UI_勇哥精简版(此版本有争议)(闭源加密)(有挖矿嫌疑)(有挖矿嫌疑)
-function x-ui_yg(){
-wget -N https://gitlab.com/rwkgyg/x-ui-yg/raw/main/install.sh && bash install.sh
-}
-
 #3X-UI_伊朗魔改版x-ui
 function 3x-ui(){
 bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) v2.3.0
@@ -112,7 +107,6 @@ function start_menu(){
     yellow " =================================================="
     green " 4. X-UI原版" 
     green " 5. X-UI_FranzKafkaYu分支版"
-    green " 6. X-UI_勇哥版(此版本有争议)(闭源且加密)(有挖矿嫌疑)"
     green " 7. 3X-UI_伊朗魔改版x-ui"
     green " 8. ArgoX"
     yellow " =================================================="
