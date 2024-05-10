@@ -20,7 +20,7 @@
         format transform `{request>headers>X-Forwarded-For>[0]:request>remote_ip} - {user_id} [{ts}] "{request>method} {request>uri} {request>proto}" {status} {size} "{request>headers>Referer>[0]}" "{request>headers>User-Agent>[0]}"` {
             time_format "02/Jan/2006:15:04:05 -0700"
         }
-	    output file /root/data/caddy/{args.0}/blog/access.log {
+	    output file /root/data/caddy/log/{args.0}/access.log {
 	        roll_size 25MB
 	        roll_keep 10
 	        roll_keep_for 24h
@@ -30,44 +30,65 @@
 
 (error_page) {
     handle_errors {
-	    rewrite * /{err.status_code}
-        root * /root/data/caddy/pages/errors
+	    rewrite * /{err.status_code}.html
+	    root * /root/data/caddy/pages/errors
         file_server
     }
+}
+
+(encode) {
+    encode {
+	    zstd 5
+		br 5
+		gzip 5
+		minimum_length 1024
+    }
+}
+
+(cache) {
+    cache {
+         allowed_http_verbs GET
+         stale {args.0}
+         ttl {args.1}
+    }    
+}
+
+(header_realip) {
+    header_up X-Real-IP {remote_host}	    
+	header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+	header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
+	header_up X-Forwarded-Proto {http.request.header.CF-Visitor}
+}
+
+(buffer) {
+    flush_interval 2000s
+	buffer_responses
+	max_buffer_size 256k
+}
+
+(tls) {
+    tls {
+	    dns {args.0} {args.1} 
+    }    
+}
+
+(rate_limit) {
+    rate_limit {remote.ip} {args.0}r/m 10000 429
 }
 
 :80 {
 	root * /root/data/caddy/pages/demo
-	try_files {path}/index.html
     file_server
-    cache {
-         allowed_http_verbs GET
-         stale 100s
-         ttl 200s
-    }
-    handle_errors {
-	    rewrite * /{err.status_code}
-        root * /root/data/caddy/pages/errors
-        file_server
-    }     
-    encode gzip zstd br
+    import cache 0s 200s
+    import log 80
+    import error_page  
+    import encode
 }
 
 :9000 {
     reverse_proxy * 172.20.20.10:5001
-    cache {
-        allowed_http_verbs GET
-        stale 300s
-        ttl 600s
-    }
-    encode {
-        gzip 5
-        br 4
-    }
-    handle_errors {
-	    rewrite * /{err.status_code}
-	    reverse_proxy https://http.cat {
-		    header_up Host {upstream_hostport}
-	    }
-    }
+    import cache 0s 200s
+    import log dockge
+    import error_page
+    import encode
 }
