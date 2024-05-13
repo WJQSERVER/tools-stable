@@ -11,10 +11,6 @@ apt-get install -y syncthing
 PUBLIC_IP=0.0.0.0
 PORT=8384
 
-# 修改地址为公网IP和指定端口
-CONFIG_FILE="/root/.config/syncthing/config.xml"
-sed -i "s|<address>.*</address>|<address>$PUBLIC_IP:$PORT</address>|" "$CONFIG_FILE"
-
 cat > /etc/systemd/system/syncthing.service <<EOF
 [Unit]
 Description=Syncthing - Open Source Continuous File Synchronization
@@ -32,6 +28,8 @@ EOF
 
 # 启动Syncthing服务
 systemctl daemon-reload
+CONFIG_FILE="/root/.config/syncthing/config.xml"
+sed -i "s|<address>.*</address>|<address>$PUBLIC_IP:$PORT</address>|" "$CONFIG_FILE"
 systemctl enable syncthing
 systemctl start syncthing
 

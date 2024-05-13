@@ -221,8 +221,20 @@ sudo ufw deny from 167.94.138.0/24
 sudo ufw deny from 167.94.145.0/24
 sudo ufw deny from 167.94.146.0/24
 sudo ufw deny from 167.248.133.0/24
-sudo ufw deny from 2602:80d:1000:b0cc:e::/80
-sudo ufw deny from 2620:96:e000:b0cc:e::/80
+sudo ufw deny from 199.45.154.0/24
+sudo ufw deny from 199.45.155.0/24
+sudo ufw deny from 206.168.35.0/24
+sudo ufw deny from 206.168.34.0/24
+sudo ufw deny from 206.168.33.0/24
+sudo ufw deny from 206.168.32.0/24
+sudo ufw deny from 2602:80d:1000::/48
+sudo ufw deny from 2602:80d:1001::/48
+sudo ufw deny from 2602:80d:1002::/48
+sudo ufw deny from 2602:80d:1003::/48
+sudo ufw deny from 2602:80d:1004::/48
+sudo ufw deny from 2602:80d:1005::/48
+sudo ufw deny from 2602:80d:1006::/48
+sudo ufw deny from 2620:96:e000::/48
 sudo ufw allow 9000
 sudo ufw allow 9001
 
