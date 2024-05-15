@@ -2,9 +2,17 @@
 由WJQserver Studio推出的快捷Linux工具箱-测试版本
 
 V.0.9
+
 ```
 wget -O tools-stable.sh https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/tools-stable.sh && chmod +x tools-stable.sh && clear && ./tools-stable.sh
 ```
+
+V.0.9 Mirror-US
+
+```
+wget -O tools-stable-mirror-us.sh https://tools.1888866.xyz/tools-stable-mirror-us.sh && chmod +x tools-stable-mirror-us.sh && clear && ./tools-stable-mirror-us.sh
+```
+
 # 声明
 
 大部分功能非团队原创，部分功能仅提供辅助调用项目
