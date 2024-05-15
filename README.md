@@ -16,4 +16,4 @@ wget -O tools-stable.sh https://raw.githubusercontent.com/WJQSERVER/tools-stable
 请确定你的用途符合 你当地和运行环境/设备的 相关法律法规的要求和限制
 
 # 维护中
-部分功能不可用/异常
+部分功能还在测试
