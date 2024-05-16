@@ -37,6 +37,7 @@ docker-compose up -d
 
 # 提示服务访问地址
 echo "服务已成功启动！"
+echo "默认账号：admin@sun.cc 默认密码：12345678"
 
 #回到root目录
 cd /root
