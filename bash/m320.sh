@@ -108,7 +108,7 @@ systemctl enable caddy.service >> /root/data/log/aek971.log 2>&1
 systemctl start caddy.service >> /root/data/log/aek971.log 2>&1
 echo -e "[${green}OK${white}] $mikublue 6/11 caddy安装完成" $white
 echo -e "[${red}Fail${white}] $mikublue 7/11 dockge安装失败(开启于9000端口)" $white
-echo -e "[${green}OK${white}] $mikublue 8/11 Speedtest-X安装失败(开启于9001端口)" $white
+echo -e "[${red}Fail${white}] $mikublue 8/11 Speedtest-X安装失败(开启于9001端口)" $white
 
 echo "**************************************************************************"
 
