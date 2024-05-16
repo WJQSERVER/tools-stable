@@ -29,9 +29,10 @@ EOF
 # 启动Syncthing服务
 systemctl daemon-reload
 CONFIG_FILE="/root/.config/syncthing/config.xml"
-sed -i "s|<address>.*</address>|<address>$PUBLIC_IP:$PORT</address>|" "$CONFIG_FILE"
 systemctl enable syncthing
 systemctl start syncthing
+sed -i "s|<address>.*</address>|<address>$PUBLIC_IP:$PORT</address>|" "$CONFIG_FILE"
+systemctl restart syncthing
 
 # 回到root目录
 cd /root
