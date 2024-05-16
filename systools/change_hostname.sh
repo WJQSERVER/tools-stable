@@ -5,10 +5,10 @@ change_hostname() {
     local new_hostname=$1
 
     # 修改主机名
-    sudo hostnamectl set-hostname "$new_hostname"
+    hostnamectl set-hostname "$new_hostname"
 
     # 更新 /etc/hosts 文件中的主机名
-    sudo sed -i "s/127.0.1.1.*/127.0.1.1\t$new_hostname/g" /etc/hosts
+    sed -i "s/127.0.1.1.*/127.0.1.1\t$new_hostname/g" /etc/hosts
 
     echo "主机名已成功修改为：$new_hostname"
 }

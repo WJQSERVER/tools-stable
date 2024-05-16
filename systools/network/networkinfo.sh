@@ -1,6 +1,14 @@
 #!/bin/bash
 
-apt install ethtool
+mikublue="\033[38;2;57;197;187m"
+yellow='\033[33m'
+white='\033[0m'
+green='\033[0;32m'
+blue='\033[0;34m'
+red='\033[31m'
+gray='\e[37m'
+
+apt install ethtool -y
 
 # 获取本地网络信息
 interface=$(ip -o -4 route show to default | awk '{print $5}')
@@ -19,18 +27,21 @@ public_ipv6=$(curl 6.ipw.cn )
 
 # 输出结果
 echo "本地网络信息："
-echo "接口名称: $interface"
-echo "IPv4地址: $local_ipv4"
-echo "IPv6地址: $local_ipv6"
-echo "网关: $gateway"
-echo "子网掩码: $subnet_mask"
-echo "DNS服务器: $dns_servers"
-echo "公网IPv4地址: $public_ipv4"
-echo "公网IPv6地址: $public_ipv6"
-echo "网卡型号: $model"
-echo "网卡速率: $speed"
-echo "双工状态: $duplex"
-echo "链路状态: $(ip link show dev $interface | awk '/state/ {print $9}')"
+echo -e "${yellow}==================================================${white}"
+echo -e "${mikublue}接口名称:${white} $interface"
+echo -e "${mikublue}IPv4地址:${white} $local_ipv4"
+echo -e "${mikublue}IPv6地址:${white} $local_ipv6"
+echo -e "${mikublue}网关:${white} $gateway"
+echo -e "${mikublue}子网掩码:${white} $subnet_mask"
+echo -e "${mikublue}DNS服务器:${white}"
+echo -e "$dns_servers"
+echo -e "${mikublue}公网IPv4地址:${white} $public_ipv4"
+echo -e "${mikublue}公网IPv6地址:${white} $public_ipv6"
+echo -e "${mikublue}网卡型号:${white} $model"
+echo -e "${mikublue}网卡速率:${white} $speed"
+echo -e "${mikublue}双工状态:${white} $duplex"
+echo -e "${mikublue}链路状态:${white} $(ip link show dev $interface | awk '/state/ {print $9}')"
+echo -e "${yellow}==================================================${white}"
 
 #回到root目录
 cd /root
