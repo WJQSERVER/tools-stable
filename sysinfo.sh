@@ -1,5 +1,13 @@
 #!/bin/bash
 
+mikublue="\033[38;2;57;197;187m"
+yellow='\033[33m'
+white='\033[0m'
+green='\033[0;32m'
+blue='\033[0;34m'
+red='\033[31m'
+gray='\e[37m'
+
 # 获取主机名
 hostname=$(hostname)
 
@@ -95,54 +103,30 @@ runtime=$(cat /proc/uptime | awk -F. '{run_days=int($1 / 86400);run_hours=int(($
 congestion_algorithm=$(sysctl -n net.ipv4.tcp_congestion_control)
 queue_algorithm=$(sysctl -n net.core.default_qdisc)
 
-# 獲取總流量
-awk -v interface="$interface" 'BEGIN { rx_total = 0; tx_total = 0 }
-        NR > 2 && $1 == interface { rx_total += $2; tx_total += $10 }
-        END {
-            rx_units = "Bytes";
-            tx_units = "Bytes";
-            if (rx_total > 1024) { rx_total /= 1024; rx_units = "KB"; }
-            if (rx_total > 1024) { rx_total /= 1024; rx_units = "MB"; }
-            if (rx_total > 1024) { rx_total /= 1024; rx_units = "GB"; }
-
-            if (tx_total > 1024) { tx_total /= 1024; tx_units = "KB"; }
-            if (tx_total > 1024) { tx_total /= 1024; tx_units = "MB"; }
-            if (tx_total > 1024) { tx_total /= 1024; tx_units = "GB"; }
-        }' /proc/net/dev
-
 # 显示系统信息
 clear
-echo "系統信息:"
-echo "---------------------------"
-echo "主機名: $hostname"
-echo "運營商: $isp"
-echo "發行版版本：$pretty_name"
-echo "Linux内核版本: $linux_version"
-echo "虛擬化：$virtualization_architecture"
-echo "---------------------------"
-echo "CPU型號: $cpu_model"
-echo "CPU利用率: $cpu_usage%"
-echo "CPU核心數: $cpu_cores"
-echo "CPU架構: $cpu_arch"
-echo "虛擬化支持: $virtualization_support"
-echo "---------------------------"
-echo "物理内存：$used_mem/$total_mem ($used_percentage%)"
-echo "虚拟内存: $swap_memory"
-echo "硬碟占用: $disk_usage"
-echo "---------------------------"
-echo "公網IPv4地址: $public_ipv4"
-echo "IPv6地址: $local_ipv6"
-echo "網路擁塞算法: $congestion_algorithm $queue_algorithm"
-echo "总接收: $rx_total $rx_units"
-echo "总发送: $tx_total $tx_units"
-echo "---------------------------"
-echo "所在地區: $country"
-echo "所在城市: $city"
-echo "系统時間: $system_time"
-echo "系统時區：$current_timezone"
-echo "---------------------------"
-echo "系統運行時長: $runtime"
-echo
+echo -e "${red}系統信息:"
+echo -e "${green}============================================================"
+echo -e "${mikublue}主機名: ${yellow}$hostname"
+echo -e "${mikublue}運營商: ${white}$isp"
+echo -e "${mikublue}發行版版本：${yellow}$pretty_name"
+echo -e "${mikublue}Linux内核版本: ${white}$linux_version"
+echo -e "${mikublue}虛擬化：${yellow}$virtualization_architecture"
+echo -e "${green}============================================================"
+echo -e "${mikublue}CPU型號: ${white}$cpu_model"
+echo -e "${mikublue}CPU架构: ${yellow}$cpu_arch ${mikublue}核心数:${yellow}$cpu_cores ${mikublue}利用率:${yellow}$cpu_usage${white}%"
+echo -e "${mikublue}内存: ${white}$used_mem/${yellow}$total_mem ${white}($used_percentage%) ${mikublue}SWAP:${white}$swap_memory ${mikublue}硬盘:${white}$disk_usage"
+echo -e "${mikublue}虛擬化支持: ${white}$virtualization_support"
+echo -e "${green}============================================================"
+echo -e "${mikublue}公網IPv4地址: ${yellow}$public_ipv4"
+echo -e "${mikublue}IPv6地址:${white}"
+echo -e "$local_ipv6"
+echo -e "${mikublue}網路擁塞算法: ${yellow}$congestion_algorithm $queue_algorithm"
+echo -e "${green}============================================================"
+echo -e "${mikublue}所在地区: ${white}$country${yellow}/${white}$city"
+echo -e "${mikublue}系统時間: ${white}$current_timezone $system_time"
+echo -e "${mikublue}系統運行時長: ${white}$runtime"
+echo -e "${green}============================================================${white}"
 
 #回到root目录
 cd /root
