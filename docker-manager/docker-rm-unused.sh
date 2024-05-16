@@ -24,6 +24,18 @@ cleanup_networks() {
     echo "已清理无用网络."
 }
 
+back(){
+    wget -O docker-manager-menu.sh ${repo_url}docker-manager/docker-manager-menu.sh && chmod +x docker-manager-menu.sh && ./docker-manager-menu.sh
+    sleep 1
+    cd /root
+    read -p "是否返回菜单?: [Y/n]" choice
+    if [[ "$choice" == "" || "$choice" == "Y" || "$choice" == "y" ]]; then
+        wget -O test-menu.sh ${repo_url}Test/test-menu.sh && chmod +x test-menu.sh && ./test-menu.sh
+    else
+        echo "脚本结束"
+    fi
+}
+
 # 主函数
 main() {
     local cleanup_all=false
@@ -48,6 +60,7 @@ main() {
         cleanup_containers
         cleanup_volumes
         cleanup_networks
+        back
     else
         echo "请选择要清理的内容:"
         echo "1. 镜像"
@@ -76,6 +89,7 @@ main() {
                 cleanup_containers
                 cleanup_volumes
                 cleanup_networks
+                back
                 ;;
             0)
                 echo "取消清理."

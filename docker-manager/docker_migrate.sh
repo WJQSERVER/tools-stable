@@ -1,5 +1,11 @@
 #!/bin/bash
 
+read -p "此操作将执行危险操作，是否继续？(y/n): " confirm
+if [[ $confirm != "y" ]]; then
+    echo "操作已取消。"
+    exit 0
+fi
+
 # 停止 Docker 服务
 sudo systemctl stop docker
 
