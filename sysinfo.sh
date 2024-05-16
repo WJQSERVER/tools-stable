@@ -111,6 +111,7 @@ awk -v interface="$interface" 'BEGIN { rx_total = 0; tx_total = 0 }
         }' /proc/net/dev
 
 # 显示系统信息
+clear
 echo "系統信息:"
 echo "---------------------------"
 echo "主機名: $hostname"
