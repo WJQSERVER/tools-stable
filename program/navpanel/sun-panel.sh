@@ -12,25 +12,20 @@ fi
 mkdir -p /root/data/docker_data/sun-panel
 cd /root/data/docker_data/sun-panel
 
-# 从用户输入中获取容器端口
-read -p "请输入容器端口: " PORT
-
 # 创建 docker-compose.yml 文件
 cat > docker-compose.yml <<EOF
 version: '3.9'
 services:
-  sun-panel:
-    image: hslr/sun-panel
-    container_name: sun-panel
-    restart: unless-stopped
-    network_mode: bridge
-    volumes:
-      - ./conf:/app/conf
-      - ./uploads:/app/uploads
-      - ./database:/app/database
-    networks:
-      hypernet:
-        ipv4_address: 172.20.20.22
+    sun-panel:
+        image: 'hslr/sun-panel:latest'
+        container_name: sun-panel
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '~/docker_data/sun-panel/conf:/app/conf'
+        restart: always
+        networks:
+          hypernet:
+            ipv4_address: 172.20.20.22
 
 networks:
   hypernet:
