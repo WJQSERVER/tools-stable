@@ -215,9 +215,24 @@ function spiritysdx(){
     fi
 }
 
+#IP质量检测
+function ipcheck(){
+    clear
+    bash <(curl -L -s ip.check.place)
+
+}
+
 #返回主脚本
 function back(){
     wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && ./main.sh
+    sleep 1
+    #返回菜单/退出脚本
+    read -p "是否返回菜单?: [Y/n]" choice
+    if [[ "$choice" == "" || "$choice" == "Y" || "$choice" == "y" ]]; then
+        wget -O test-menu.sh ${repo_url}Test/test-menu.sh && chmod +x test-menu.sh && ./test-menu.sh
+    else
+        echo "脚本结束"
+    fi
 }
 
 #主菜单
@@ -238,11 +253,13 @@ function start_menu(){
     yellow " =================================================="
     green " 7. Superspeed三网测速"
     green " 8. Hyperspeed三网测速"
+    green " 9. Speedtest全球测速 by i-abc"
     yellow " =================================================="
-    green " 9. Lemonbench综合测试"
-    green " 10.Yabs性能带宽测试"
-    green " 11.bench性能测试"
-    green " 12.spiritysdx融合怪测评"
+    green " 10. Lemonbench综合测试"
+    green " 11.Yabs性能带宽测试"
+    green " 12.bench性能测试"
+    green " 13.spiritysdx融合怪测评"
+    green " 14.IP质量检测"
     yellow " =================================================="
     green " 0. 返回主脚本"
     echo
@@ -272,18 +289,24 @@ function start_menu(){
 	    8 )
            hyperspeed
 	    ;;
-	    9 )
+        9 )
+           iabcspeedtest
+        ;;   
+	    10 )
            lemonbench
 	    ;;
-	    10 )
+	    11 )
            yabsbench
 	    ;;
-	    11 )
+	    12 )
            benchbench
 	    ;;
-	    12 )
+	    13 )
            spiritysdx
-	    ;;                                           
+	    ;;
+        14 )
+           ipcheck
+        ;;                                           
 
         0 )
            back
