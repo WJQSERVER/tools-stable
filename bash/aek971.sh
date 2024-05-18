@@ -42,7 +42,7 @@ clear
 echo "**************************************************************************"
 apt update >> /root/data/log/aek971.log 2>&1
 echo -e "[${green}OK${white}] $mikublue 1/11 更新软件源" $white
-apt install wget curl vim git sudo tar -y >> /root/data/log/aek971.log 2>&1
+apt install wget curl vim git sudo tar zstd -y >> /root/data/log/aek971.log 2>&1
 echo -e "[${green}OK${white}] $mikublue 2/11 安装常用组件" $white
 apt upgrade -y >> /root/data/log/aek971.log 2>&1
 echo -e "[${green}OK${white}] $mikublue 3/11 更新系统组件包" $white
