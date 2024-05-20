@@ -116,3 +116,5 @@
     import error_page
     import encode
 }
+
+import /root/data/caddy/config/*

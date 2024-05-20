@@ -1,8 +1,26 @@
 #!/bin/bash
 
+if [[ -f "/etc/os-release" ]]; then
+    source /etc/os-release
+    distribution=$NAME
+    version=$VERSION_ID
+
+    if [[ $distribution == "Debian GNU/Linux" && $version == "12"* ]]; then
+        echo "Debian12 Pass"
+    else
+        echo "ERROR"
+        exit 1
+    fi
+else
+    echo "ERROR"
+    exit 1
+fi
+
 source "repo_url.conf"
 
 ROOT=$(pwd)
+
+read -p "请输入网站地址(错误输入会导致网访问出现问题):" siteurl
 
 apt install php php-cgi php-fpm php-curl php-gd php-mbstring php-xml php-sqlite3 sqlite3 php-mysqli unzip sed -y
 wget -q https://cn.wordpress.org/latest-zh_CN.zip
@@ -34,11 +52,11 @@ sed -i "s#{SQLITE_IMPLEMENTATION_FOLDER_PATH}#$PLUGIN_DIR#" $ROOT/wp-content/db.
 sed -i 's#{SQLITE_PLUGIN}#sqlite-database-integration/load.php#' $ROOT/wp-content/db.php
 
 sqlite3 "$ROOT/wp-content/database/.ht.sqlite" <<EOF
-UPDATE wp_options SET option_value = 'http://example.com' WHERE option_name = 'siteurl';
+UPDATE wp_options SET option_value = '$siteurl' WHERE option_name = 'siteurl';
 .quit
 EOF
 
 sqlite3 "$ROOT/wp-content/database/.ht.sqlite" <<EOF
-UPDATE wp_options SET option_value = 'http://example.com' WHERE option_name = 'home';
+UPDATE wp_options SET option_value = '$siteurl' WHERE option_name = 'home';
 .quit
 EOF

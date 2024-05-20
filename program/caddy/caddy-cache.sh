@@ -49,6 +49,7 @@ EOF
 
 #创建hello world
 mkdir -p /root/data/caddy/page
+mkdir -p /root/data/caddy/config
 cat <<EOF > /root/data/caddy/page/index.html
 <html>
  <head>
