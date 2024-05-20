@@ -71,6 +71,11 @@ function aek971(){
     wget -O aek971.sh https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/bash/aek971.sh && chmod +x aek971.sh && ./aek971.sh
 }
 
+#一键配置环境
+function m320(){
+    wget -O m320.sh https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/bash/m320.sh && chmod +x m320.sh && ./m320.sh
+}
+
 #返回主脚本
 function back(){
     wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && ./main.sh
@@ -90,6 +95,7 @@ function start_menu(){
     green " 3. PVE-source(by Jazz)"
     green " 4. PVE信息补充" 
     green " 5. WJQserver Studio边缘节点一键部署"
+    green " 6. WJQserver Studio边缘节点一键部署(无DOCKER)"
     yellow " =================================================="
     green " 0. 返回主界面"
     echo
@@ -111,7 +117,7 @@ function start_menu(){
            aek971
 	    ;;
         6 )
-	       test-tool
+	       m320
         ;;
 	    7 )
            web
