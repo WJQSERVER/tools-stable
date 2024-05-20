@@ -72,8 +72,32 @@
     }    
 }
 
+(buffer) {
+    flush_interval 2000s
+	buffer_responses
+	max_buffer_size 256k
+}
+
 (rate_limit) {
-    rate_limit {remote.ip} {args.0}r/m 10000 429
+    route /* {
+        rate_limit {remote.ip} {args.0}r/m 10000 429
+    }    
+}
+
+(route_nocache) {
+    route {args.0} {
+        rate_limit {remote.ip} {args.1}r/m 10000 429
+        cache {
+            stale 0s
+            ttl 0s
+        }
+    }
+}
+
+(orgin_flush) {
+    flush_interval 2000s
+    buffer_responses
+    max_buffer_size 256k
 }
 
 :80 {
