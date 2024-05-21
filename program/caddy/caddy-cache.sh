@@ -2,27 +2,16 @@
 
 clear
 
-#提示
-echo "将会附带多个插件"
-sleep 1
+echo 开始安装Caddy2
 
-# 创建目录
-mkdir -p /root/data/caddy
-cd /root/data/caddy
-
-#下载
-#wget https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
-wget -O /root/data/caddy/caddy.tar.gz https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz
-
-#解压
-tar -xzvf caddy.tar.gz
-rm caddy.tar.gz
-
-#赋权
-chmod +x /root/data/caddy/caddy
-chown root:root /root/data/caddy/caddy
-
-# 创建服务文件
+mkdir -p /root/data/caddy >> /root/data/log/aek971.log 2>&1
+mkdir -p /root/data/caddy/config >> /root/data/log/aek971.log 2>&1
+wget -O /root/data/caddy/caddy.tar.gz https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz >> /root/data/log/aek971.log 2>&1
+tar -xzvf /root/data/caddy/caddy.tar.gz -C /root/data/caddy >> /root/data/log/aek971.log 2>&1
+rm /root/data/caddy/caddy.tar.gz >> /root/data/log/aek971.log 2>&1
+chmod +x /root/data/caddy/caddy >> /root/data/log/aek971.log 2>&1
+chown root:root /root/data/caddy/caddy >> /root/data/log/aek971.log 2>&1
+ 
 cat <<EOF > /etc/systemd/system/caddy.service
 [Unit]
 Description=Caddy
@@ -45,74 +34,23 @@ AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 
 [Install]
 WantedBy=multi-user.target
-EOF
-
-#创建hello world
-mkdir -p /root/data/caddy/page
-mkdir -p /root/data/caddy/config
-cat <<EOF > /root/data/caddy/page/index.html
-<html>
- <head>
- </head>
- <body>
-   <h1> Hello World </h1>
-   <h2> Hello World </h2>
-   <h3> Hello World </h3>
-   <h4> Hello World </h4>
-   <h5> Hello World </h5>
-   <h6> Hello World </h6>
- </body>
-</html>
 
 EOF
 
-#创建caddyfile
-cat <<EOF > /root/data/caddy/Caddyfile
-{
-    debug
-    http_port 80
-    https_port 443
-    order cache before rewrite
-    cache    
-}
+wget -O /root/data/caddy/Caddyfile https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddyfile >> /root/data/log/aek971.log 2>&1
 
-:80 {
-	root * /root/data/caddy/page
-	try_files {path}/index.html
-    file_server
-    cache {
-         allowed_http_verbs GET
-         stale 100s
-         ttl 200s
-    }
-    handle_errors {
-	    rewrite * /{err.status_code}
-	    reverse_proxy https://http.cat {
-		    header_up Host {upstream_hostport}
-	    }
-    }     
-    encode gzip zstd br
-}
-EOF
-
-#赋权
-chown root:root /root/data/caddy/Caddyfile
-
-# 重新加载systemd服务
-systemctl daemon-reload
-
-# 启用服务
-systemctl enable caddy.service
-
-# 启动服务
-systemctl start caddy.service
-
-# 检查服务状态
-systemctl status caddy.service
-
-# 提示服务访问地址
+#./caddy add-package github.com/caddyserver/cache-handler
+#./caddy add-package github.com/ueffel/caddy-brotli
+#./caddy add-package github.com/caddyserver/transform-encoder
+#./caddy add-package github.com/RussellLuo/caddy-ext/ratelimit
+#./caddy add-package github.com/caddy-dns/cloudflare
+chown root:root /root/data/caddy/Caddyfile >> /root/data/log/aek971.log 2>&1
+systemctl daemon-reload >> /root/data/log/aek971.log 2>&1
+systemctl enable caddy.service >> /root/data/log/aek971.log 2>&1
+systemctl start caddy.service >> /root/data/log/aek971.log 2>&1
+echo -e "[${green}OK${white}] $mikublue Caddy2安装完成" $white
 echo "服务已成功启动！"
-echo "采用Caddyfile配置文件"
+echo "默认采用Caddyfile配置"
 echo "/root/data/caddy/Caddyfile"
 echo "已在<服务器IP>:80上部署了演示页"
 
