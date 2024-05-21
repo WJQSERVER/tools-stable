@@ -99,6 +99,7 @@ echo -e "[${green}OK${white}] $mikublue 5/11 docker安装完成" $white
 echo "**************************************************************************"
 
 mkdir -p /root/data/caddy >> /root/data/log/lcdsp.log 2>&1
+mkdir -p /root/data/caddy/config >> /root/data/log/lcdsp.log 2>&1
 wget -O /root/data/caddy/caddy.tar.gz https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz >> /root/data/log/lcdsp.log 2>&1
 tar -xzvf /root/data/caddy/caddy.tar.gz -C /root/data/caddy >> /root/data/log/lcdsp.log 2>&1
 rm /root/data/caddy/caddy.tar.gz >> /root/data/log/lcdsp.log 2>&1

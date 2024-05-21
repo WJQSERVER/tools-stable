@@ -16,7 +16,7 @@ else
     exit 1
 fi
 
-source "repo_url.conf"
+repo_url="https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/"
 
 ROOT=$(pwd)
 
@@ -60,3 +60,7 @@ sqlite3 "$ROOT/wp-content/database/.ht.sqlite" <<EOF
 UPDATE wp_options SET option_value = '$siteurl' WHERE option_name = 'home';
 .quit
 EOF
+
+chmod 755 -R $ROOT
+chmod 640 $ROOT/wp-content/database/.ht.sqlite
+chown www-data:www-data -R $ROOT
