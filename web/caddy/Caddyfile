@@ -60,12 +60,6 @@
 	header_up X-Forwarded-Proto {http.request.header.CF-Visitor}
 }
 
-(buffer) {
-    flush_interval 2000s
-	buffer_responses
-	max_buffer_size 256k
-}
-
 (tls) {
     tls {
 	    dns {args.0} {args.1} 
