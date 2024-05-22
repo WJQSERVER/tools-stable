@@ -28,6 +28,7 @@ fi
 
 sed -i "s#{SQLITE_IMPLEMENTATION_FOLDER_PATH}#/var/www/html/wordpress/wp-content/mu-plugins#" /var/www/html/wordpress/wp-content/db.php 
 sed -i 's#{SQLITE_PLUGIN}#sqlite-database-integration/load.php#' /var/www/html/wordpress/wp-content/db.php
+sed -i 's/^listen =.*/listen = 127.0.0.1:10000/' /etc/php/8.2/fpm/pool.d/www.conf
 
 chmod 755 -R /var/www/html/wordpress 
 chmod 640 /var/www/html/wordpress/wp-content/database/.ht.sqlite 
