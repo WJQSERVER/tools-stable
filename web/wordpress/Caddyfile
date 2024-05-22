@@ -1,0 +1,51 @@
+{
+    debug
+    http_port 80
+    https_port 443
+    order cache before rewrite
+    cache {
+        cache_name CaddyCache
+    }
+    log {
+        level INFO
+        output file /root/data/caddy/log/caddy.log {
+            roll_size 10MB
+            roll_keep 10
+        }            
+    }        
+}
+
+(log) {
+    log {
+	    output file /root/data/caddy/log/wordpress/access.log {
+	        roll_size 25MB
+	        roll_keep 10
+	        roll_keep_for 24h
+	    }
+    }
+}
+
+(error_page) {
+    handle_errors {
+	    rewrite * /{err.status_code}.html
+	    root * /root/data/caddy/pages/errors
+        file_server
+    }
+}
+
+(encode) {
+    encode {
+	    zstd 5
+		gzip 5
+		minimum_length 1024
+    }
+}
+
+(header_realip) {
+    header_up X-Real-IP {remote_host}	    
+	header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+	header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
+	header_up X-Forwarded-Proto {http.request.header.CF-Visitor}
+}
+
+import /root/data/caddy/config/*
