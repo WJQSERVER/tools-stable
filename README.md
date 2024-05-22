@@ -1,5 +1,5 @@
 # WJQserver-tools-Stable
-由WJQserver Studio推出的快捷Linux工具箱-测试版本
+由WJQserver Studio推出的快捷Linux工具箱-稳定版本
 
 V.0.9
 
