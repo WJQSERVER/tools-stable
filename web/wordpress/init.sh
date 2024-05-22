@@ -9,7 +9,7 @@ if [ ! -f /var/www/html/wordpress/index.php ]; then
 fi
 if [ ! -f /data/caddy/config.d/wordpress ]; then
     cat > /data/caddy/config.d/wordpress <<EOF
-    
+
 $siteurl {
     root * /var/www/html/wordpress
     file_server
@@ -25,6 +25,9 @@ $siteurl {
 EOF
 
 fi
+
+sed -i "s#{SQLITE_IMPLEMENTATION_FOLDER_PATH}#/var/www/html/wordpress/wp-content/mu-plugins#" /var/www/html/wordpress/wp-content/db.php 
+sed -i 's#{SQLITE_PLUGIN}#sqlite-database-integration/load.php#' /var/www/html/wordpress/wp-content/db.php
 
 chmod 755 -R /var/www/html/wordpress 
 chmod 640 /var/www/html/wordpress/wp-content/database/.ht.sqlite 
