@@ -20,3 +20,11 @@ $siteurl {
     import encode
 }
 EOF
+
+if [ ! -f /data/caddy/config/Caddyfile ]; then
+  # 执行初始化操作
+  # ...
+
+  # 创建标记文件
+  touch /app/.initialized
+fi

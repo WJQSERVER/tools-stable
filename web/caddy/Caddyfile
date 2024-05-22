@@ -111,4 +111,4 @@
     import encode
 }
 
-import /data/caddy/config/*
+import /data/caddy/config.d/*
