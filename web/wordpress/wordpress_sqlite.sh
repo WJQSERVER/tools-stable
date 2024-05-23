@@ -18,14 +18,17 @@ fi
 
 repo_url="https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/"
 
-ROOT=$(pwd)
+ROOT=/var/www/html/wordpress
+mkdir -p $ROOT
+cd $ROOT
 
 read -p "请输入网站地址(错误输入会导致网访问出现问题):" siteurl
 
+apt install sqlite3 unzip -y
 apt install php php-cgi php-fpm php-curl php-gd php-mbstring php-xml php-sqlite3 sqlite3 php-mysqli unzip sed -y
-wget -q https://cn.wordpress.org/latest-zh_CN.zip
-unzip -qq latest-zh_CN.zip
-mv wordpress/* .
+wget -O /var/www/html/wordpress/latest-zh_CN.zip https://cn.wordpress.org/latest-zh_CN.zip
+unzip /var/www/html/wordpress/latest-zh_CN.zip -d /var/www/html/wordpress
+mv /var/www/html/wordpress/wordpress/* /var/www/html/wordpress
 rm -rf latest-zh_CN.zip
 rm -rf wordpress
 wget ${repo_url}web/wordpress/wp-config.php
