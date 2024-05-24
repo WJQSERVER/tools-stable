@@ -11,6 +11,7 @@ if [[ -f "/etc/os-release" ]]; then
         echo "ERROR Not Debian"
         exit 1
     fi
+fi
 
 read -p "请输入网站地址(错误输入会导致网访问出现问题):" siteurl
 
@@ -57,13 +58,14 @@ docker exec php sh -c 'echo "memory_limit=256M" > /usr/local/etc/php/conf.d/memo
 wget -O /var/www/html/wordpress/latest-zh_CN.zip https://cn.wordpress.org/latest-zh_CN.zip
 unzip /var/www/html/wordpress/latest-zh_CN.zip -d /var/www/html/wordpress
 mv /var/www/html/wordpress/wordpress/* /var/www/html/wordpress
-rm -rf latest-zh_CN.zip /var/www/html/wordpress/wordpress
+rm -rf /var/www/html/wordpress/wordpress
+rm -rf /var/www/html/wordpress/latest-zh_CN.zip 
 
 # 下载 wp-config.php 和数据库文件
 wget -O /var/www/html/wordpress/wp-config.php https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/web/wordpress/wp-config.php 
 mkdir -p /var/www/html/wordpress/wp-content/database 
 wget https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/web/wordpress/db.sqlite -P /var/www/html/wordpress/wp-content/database
-mv /var/www/html/wordpress.d/wp-content/database/db.sqlite /var/www/html/wordpress/wp-content/database/.ht.sqlite
+mv /var/www/html/wordpress/wp-content/database/db.sqlite /var/www/html/wordpress/wp-content/database/.ht.sqlite
 
 # 安装 SQLite 插件
 mkdir -p /var/www/html/wordpress/wp-content/mu-plugins 
@@ -83,6 +85,14 @@ sqlite3 "/var/www/html/wordpress/wp-content/database/.ht.sqlite" <<EOF
 UPDATE wp_options SET option_value = '$siteurl' WHERE option_name = 'siteurl';
 UPDATE wp_options SET option_value = '$siteurl' WHERE option_name = 'home';
 .quit
+
+EOF
+
+sqlite3 "/var/www/html/wordpress/wp-content/database/.ht.sqlite" <<EOF
+UPDATE wp_options SET option_value = 'http://10.10.20.44:8080' WHERE option_name = 'siteurl';
+UPDATE wp_options SET option_value = 'http://10.10.20.44:8080' WHERE option_name = 'home';
+.quit
+
 EOF
 
 cat > /var/www/caddy/config.d/wordpress <<EOF
@@ -99,3 +109,7 @@ $siteurl {
 }
 
 EOF
+
+cd /var/www && docker-compose restart
+
+echo "部署完成"

@@ -88,12 +88,6 @@
     }
 }
 
-(orgin_flush) {
-    flush_interval 2000s
-    buffer_responses
-    max_buffer_size 256k
-}
-
 :80 {
 	root * /data/caddy/pages/demo
     file_server
