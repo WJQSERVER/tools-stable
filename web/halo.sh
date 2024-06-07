@@ -19,7 +19,7 @@ version: "3"
 
 services:
   halo:
-    image: halohub/halo:2.14
+    image: halohub/halo:2.16
     container_name: halo
     restart: on-failure:3
     depends_on:
