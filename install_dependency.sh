@@ -2,6 +2,9 @@
 # By WJQSERVER-STUDIO_WJQSERVER
 #https://github.com/WJQSERVER/tools-stable
 
+# 导入配置文件
+source "repo_url.conf"
+
 install() {
     if [ $# -eq 0 ]; then
         echo "ARGS NOT FOUND"
@@ -47,3 +50,5 @@ upgrade() {
 
 install wget curl vim git sudo
 upgrade
+
+wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && clear && ./main.sh
