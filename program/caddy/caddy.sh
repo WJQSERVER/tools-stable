@@ -1,13 +1,15 @@
 #! /bin/bash
 #https://github.com/WJQSERVER/tools-stable
 
-mkdir -p /root/data/caddy >> /root/data/log/aek971.log 2>&1
-mkdir -p /root/data/caddy/config >> /root/data/log/aek971.log 2>&1
-wget -O /root/data/caddy/caddy.tar.gz https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy-linux-amd64-pages.tar.gz >> /root/data/log/aek971.log 2>&1
-tar -xzvf /root/data/caddy/caddy.tar.gz -C /root/data/caddy >> /root/data/log/aek971.log 2>&1
-rm /root/data/caddy/caddy.tar.gz >> /root/data/log/aek971.log 2>&1
-chmod +x /root/data/caddy/caddy >> /root/data/log/aek971.log 2>&1
-chown root:root /root/data/caddy/caddy >> /root/data/log/aek971.log 2>&1
+clear
+
+mkdir -p /root/data/caddy
+mkdir -p /root/data/caddy/config
+wget -O /root/data/caddy/caddy.tar.gz https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy-linux-amd64-pages.tar.gz
+tar -xzvf /root/data/caddy/caddy.tar.gz -C /root/data/caddy
+rm /root/data/caddy/caddy.tar.gz
+chmod +x /root/data/caddy/caddy
+chown root:root /root/data/caddy/caddy
  
 cat <<EOF > /etc/systemd/system/caddy.service
 [Unit]
@@ -34,15 +36,15 @@ WantedBy=multi-user.target
 
 EOF
 
-wget -O /root/data/caddy/Caddyfile https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddyfile >> /root/data/log/aek971.log 2>&1
+wget -O /root/data/caddy/Caddyfile https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddyfile
 
 #./caddy add-package github.com/caddyserver/cache-handler
 #./caddy add-package github.com/ueffel/caddy-brotli
 #./caddy add-package github.com/caddyserver/transform-encoder
 #./caddy add-package github.com/RussellLuo/caddy-ext/ratelimit
 #./caddy add-package github.com/caddy-dns/cloudflare
-chown root:root /root/data/caddy/Caddyfile >> /root/data/log/aek971.log 2>&1
-systemctl daemon-reload >> /root/data/log/aek971.log 2>&1
-systemctl enable caddy.service >> /root/data/log/aek971.log 2>&1
-systemctl start caddy.service >> /root/data/log/aek971.log 2>&1
+chown root:root /root/data/caddy/Caddyfile
+systemctl daemon-reload
+systemctl enable caddy.service
+systemctl start caddy.service
 echo -e "[${green}OK${white}] $mikublue 6/11 caddy安装完成" $white
