@@ -91,7 +91,7 @@ echo "**************************************************************************
 
 mkdir -p /root/data/caddy >> /root/data/log/aek971.log 2>&1
 mkdir -p /root/data/caddy/config >> /root/data/log/aek971.log 2>&1
-wget -O /root/data/caddy/caddy.tar.gz https://raw.githubusercontent.com/WJQSERVER/tools-stable/main/program/caddy/caddy.tar.gz >> /root/data/log/aek971.log 2>&1
+wget -O /root/data/caddy/caddy.tar.gz https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy-linux-amd64-pages.tar.gz >> /root/data/log/aek971.log 2>&1
 tar -xzvf /root/data/caddy/caddy.tar.gz -C /root/data/caddy >> /root/data/log/aek971.log 2>&1
 rm /root/data/caddy/caddy.tar.gz >> /root/data/log/aek971.log 2>&1
 chmod +x /root/data/caddy/caddy >> /root/data/log/aek971.log 2>&1
