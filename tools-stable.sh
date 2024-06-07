@@ -13,12 +13,12 @@ gray='\e[37m'
 clear
 
 # 显示免责声明
-echo -e "${red}免责声明：${green}请阅读并同意以下条款才能继续使用本脚本。"
+echo -e "${red}免责声明：${mikublue}请阅读并同意以下条款才能继续使用本脚本。"
 echo -e "${yellow}===================================================================="
-echo -e "${green}本脚本仅供学习和参考使用，作者不对其完整性、准确性或实用性做出任何保证。"
-echo -e "${green}使用本脚本所造成的任何损失或损害，作者不承担任何责任。"
-echo -e "${green}不提供/保证任何功能的可用性，安全性，有效性，合法性"
-echo -e "${green}当前版本为${yellow}V.0.9${white}"
+echo -e "${mikublue}本脚本仅供学习和参考使用，作者不对其完整性、准确性或实用性做出任何保证。"
+echo -e "${mikublue}使用本脚本所造成的任何损失或损害，作者不承担任何责任。"
+echo -e "${mikublue}不提供/保证任何功能的可用性，安全性，有效性，合法性"
+echo -e "${mikublue}当前版本为${yellow}V.0.9${white}"
 echo -e "${yellow}===================================================================="
 
 sleep 1
@@ -34,7 +34,7 @@ echo "repo_url=$repo_url" > "$conf_file"
 source "repo_url.conf"
 
 # 显示确认提示
-read -p "$(echo -e "${green}您是否同意上述免责声明？${white}(${green}y${white}/${red}n${white}): ${white}")" confirm
+read -p "$(echo -e "${mikublue}您是否同意上述免责声明？${white}(${green}y${white}/${red}n${white}): ${white}")" confirm
 
 # 处理确认输入
 if [[ $confirm != [Yy] ]]; then
