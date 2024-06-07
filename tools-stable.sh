@@ -34,7 +34,7 @@ echo "repo_url=$repo_url" > "$conf_file"
 source "repo_url.conf"
 
 # 显示确认提示
-read -p "$(echo -e "${mikublue}您是否同意上述免责声明？${white}(${green}y${white}/${red}n${white}): ${white}")" confirm
+read -p "$(echo -e "${mikublue}您是否同意上述免责声明?${white}（${green}y${white}/${red}n${white}）: ${white}")" confirm
 
 # 处理确认输入
 if [[ $confirm != [Yy] ]]; then
