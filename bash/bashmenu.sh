@@ -4,32 +4,32 @@
 
 clear
 
+mikublue="\033[38;2;57;197;187m"
+yellow='\033[33m'
+white='\033[0m'
+green='\033[0;32m'
+blue='\033[0;34m'
+red='\033[31m'
+gray='\e[37m'
+
 # 显示免责声明
-echo "免责声明：请阅读并同意以下条款才能继续使用本程序。"
-echo "本脚本仅供学习和参考使用，作者不对其完整性、准确性或实用性做出任何保证。"
-echo "使用本脚本所造成的任何损失或损害，作者不承担任何责任。"
-echo "本脚本用于链接到其他作者的脚本，不做任何保证"
+echo -e "${red}免责声明：${mikublue}请阅读并同意以下条款才能继续使用本脚本。"
+echo -e "${yellow}===================================================================="
+echo -e "${mikublue}本脚本仅供学习和参考使用，作者不对其完整性、准确性或实用性做出任何保证。"
+echo -e "${mikublue}使用本脚本所造成的任何损失或损害，作者不承担任何责任。"
+echo -e "${mikublue}不提供/保证任何功能的可用性，安全性，有效性，合法性"
+echo -e "${yellow}===================================================================="
 
 # 导入配置文件
 source "repo_url.conf"
 
 # 显示确认提示
-read -p "您是否同意上述免责声明？(y/n): " confirm
+read -p "$(echo -e "${mikublue}您是否同意上述免责声明?${white}（${green}y${white}/${red}n${white}）: ${white}")" confirm
 
 # 处理确认输入
 if [[ $confirm != [Yy] ]]; then
     echo "您必须同意免责声明才能继续使用本程序。"
     exit 1
-fi
-
-# 确认执行操作
-read -p "此操作将安装 wget, curl, vim 等常用软件包并进行更新。是否继续？(不进行此操作可能造成脚本异常)(y/n) " choice
-
-if [[ $choice == "y" ]]; then
-  # 安装软件包
-  apt update
-  sudo apt upgrade -y
-  apt install wget curl vim git sudo -y
 fi
 
 #彩色
