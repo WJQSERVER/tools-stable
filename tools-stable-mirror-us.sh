@@ -42,29 +42,15 @@ if [[ $confirm != [Yy] ]]; then
     exit 1
 fi
 
-# 确认执行操作
-read -p "此操作将安装 wget, curl, vim 等常用软件包并进行更新。是否继续？(不进行此操作可能造成脚本异常)(y/n) " choice
+read -p "$(echo -e "${mikublue}是否需要安装常用依赖? ${white}(${green}y${white}/${red}n${white}): ${white}")" choice
 
-if [[ $choice == "y" ]]; then
-  # 安装软件包
-  apt update
-  apt install wget curl vim git sudo -y
-  apt upgrade -y
+if [[ "$choice" == "Y" || "$choice" == "y" ]]; then
+    #安装依赖
+    wget -O install_dependency.sh ${repo_url}install_dependency.sh && chmod +x install_dependency.sh && clear && ./install_dependency.sh
+
+elif [[ "$choice" == "N" || "$choice" == "n" ]]; then
+    #主脚本
+    wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && clear && ./main.sh
+else
+    echo "无效的输入"
 fi
-
-#彩色
-red(){
-    echo -e "\033[31m\033[01m$1\033[0m"
-}
-green(){
-    echo -e "\033[32m\033[01m$1\033[0m"
-}
-yellow(){
-    echo -e "\033[33m\033[01m$1\033[0m"
-}
-blue(){
-    echo -e "\033[34m\033[01m$1\033[0m"
-}
-
-#主脚本
-wget -O main.sh ${repo_url}main.sh && chmod +x main.sh && clear && ./main.sh
