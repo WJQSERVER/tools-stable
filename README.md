@@ -3,7 +3,8 @@
 
 # 通告
 ## 倉庫已遷移
-本倉庫已停止維護,內容均遷移至https://github.com/WJQSERVER-STUDIO/tools-stable倉庫,若造成了不便請見諒
+本倉庫已停止維護,內容均遷移至https://github.com/WJQSERVER-STUDIO/tools-stable
+若造成了不便請見諒
 此次遷移旨在提升倉庫維護效率,由組織進行更高效率的維護
 
 V.0.9
